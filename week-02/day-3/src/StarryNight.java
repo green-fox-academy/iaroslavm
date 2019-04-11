@@ -32,10 +32,10 @@ public class StarryNight {
         List<Integer> color3 = new ArrayList<>(Arrays.asList(200,211,192,128));
         int colorI = 0;
 
-        for (int i = 0; i < 600; i++){
-            size = 0 + (int) (Math.random()*(5 - 0));
-            x = 0 + (int) (Math.random()*(320 - 0));
-            y = 0 + (int) (Math.random()*(320 - 0));
+        for (int i = 0; i < 1500; i++){
+            size = 1 + (int) (Math.random()*(4 - 1));
+            x = 0 + (int) (Math.random()*(WIDTH - 0));
+            y = 0 + (int) (Math.random()*(WIDTH - 0));
             colorI = 0 + (int) (Math.random()*(4 - 0));
             Color nColor = new Color(color1.get(colorI),color2.get(colorI),color3.get(colorI));
             graphics.setColor(nColor);
@@ -48,8 +48,8 @@ public class StarryNight {
     }
 
     // Don't touch the code below
-    static int WIDTH = 320;
-    static int HEIGHT = 320;
+    static int WIDTH = 500;
+    static int HEIGHT = 500;
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Drawing");
