@@ -23,7 +23,7 @@ public class StarryNight {
         graphics.fillRect(0,0,WIDTH,HEIGHT);
 
 
-        int [][][] newColor = {{{200,200,200}},{{211,211,211}},{{192,192,192}},{{128,128,128}}};
+        int [][] newColor = {{200,200,200},{211,211,211},{192,192,192},{128,128,128}};
 
         System.out.println(Arrays.toString(newColor[0]));
 
@@ -38,6 +38,7 @@ public class StarryNight {
             y = 0 + (int) (Math.random()*(WIDTH - 0));
             colorI = 0 + (int) (Math.random()*(4 - 0));
             Color nColor = new Color(color1.get(colorI),color2.get(colorI),color3.get(colorI));
+//            Color nColor = new Color(newColor[0][0],newColor[0][1],newColor[0][2]); /// also possible
             graphics.setColor(nColor);
             graphics.fillRect(x,y,size,size);
 

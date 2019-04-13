@@ -3,6 +3,8 @@ public class StringsAgain {
     public static void main(String [] args) {
 
         System.out.println(change("x is extra extreme"));
+        System.out.println(("x is extra extreme").substring(17));
+
     }
 
     public static String change(String a) {
@@ -14,9 +16,9 @@ public class StringsAgain {
         } else {
             if (index == 0){
 //
-            return "" + change(a.substring(index+1, a.length())); // return part with x replaced + new part
+            return change(a.substring(index+1)); // return part with x replaced + new part
             } else {
-                return a.substring(0,index) + change(a.substring(index, a.length()));
+                return a.substring(0,index) + change(a.substring(index));
             }
         }
 

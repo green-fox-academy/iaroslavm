@@ -14,6 +14,8 @@ public class Xstring {
 //        System.out.println(outputString);
 
         System.out.println(change("x is extra extreme"));
+        System.out.println(("x is extra extreme").replace('x','y'));
+
     }
 
     public static String change(String a) {
@@ -25,7 +27,7 @@ public class Xstring {
         } else {
             ca[index] = 'y'; // change "x" index to "y"
             String nca = new String(ca); // convert new charArray back to string
-            return nca.substring(0,index +1) +change(a.substring(index + 1, a.length())); // return part with x replaced + new part
+            return nca.substring(0,index +1) +change(a.substring(index + 1)); // return part with x replaced + new part
         }
 
 

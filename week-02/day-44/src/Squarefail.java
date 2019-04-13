@@ -4,7 +4,7 @@ import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class Squares {
+public class Squarefail {
 
     static int WIDTH = 729;
     static int HEIGHT = 729;
@@ -17,33 +17,40 @@ public class Squares {
         graphics.setColor(Color.yellow);
         graphics.fillRect(0,0,WIDTH,HEIGHT);
 
-        drawSquare(XSTART, YSTART, WIDTH, graphics);
+//        ds1(WIDTH/3, 0, WIDTH, graphics);
+//        ds1(WIDTH/3, HEIGHT/3, WIDTH/3, graphics);
+        ds2(0, 0, WIDTH, HEIGHT, graphics);
+
+
     }
 
-    public static void drawSquare(int x, int y, int size, Graphics g) {
+    public static void ds2(int x, int y, int width, int height, Graphics g) {
 
         g.setColor(Color.black);
-        g.drawRect(x,y,size,size);
-
-        if (size >= 9) {
-            //top square
-            g.setColor(Color.green);
-            drawSquare(x + size / 3, y, size / 3, g); // one third from the 0 0 coordinates
-            //right square
-            g.setColor(Color.blue);
-            drawSquare(x + size * 2 / 3, y + size / 3, size / 3, g);
-//            //bottom square
-            g.setColor(Color.CYAN);
-            drawSquare(x + size / 3, y + size * 2 / 3, size / 3, g);
-            g.setColor(Color.pink);
-//            //left square
-            drawSquare(x, y  + size / 3, size / 3, g);
-        }
-
-
-
+        g.drawRect(x + width / 3,y ,width / 3,width / 3);
+        g.drawRect(x + width * 2/ 3,y + width / 3,width / 3,width / 3);
+        g.drawRect(x + width / 3,y + width *2 / 3,width / 3,width / 3);
+        g.drawRect(x ,y + width  / 3,width / 3,width / 3);
 
     }
+
+
+//    public static void ds1(int x, int y, int size, Graphics g) {
+//
+//        g.setColor(Color.black);
+//        g.drawRect(x,y,size,size);
+//
+//        if (size >= 3) {
+//
+//            //top square
+//            ds1(x, y, size / 3, g); // one third from the 0 0 coordinates
+//            //right square
+//
+//
+//
+//        }
+//
+//    }
 
     // Don't touch the code below
 
