@@ -20,6 +20,9 @@ public class WriteMultipleLines {
     }
 
     public static void writer(String strPath, String word, int number) {
+        if (false) {
+            strPath = "new-" + strPath;
+        }
 
         try {
             List<String> stringToWrite = new ArrayList<>();
