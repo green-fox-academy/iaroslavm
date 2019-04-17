@@ -1,5 +1,5 @@
 public class Sharpie {
-    int inkAmount = 100;
+    int inkAmount = 2;
     String color;
     float width;
 
