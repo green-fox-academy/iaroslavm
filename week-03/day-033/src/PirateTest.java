@@ -1,29 +1,34 @@
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
+
 public class PirateTest {
     public static void main(String [] args) {
         Pirate oldChap = new Pirate("Old Chap");
         Pirate oldJohn = new Pirate("Old Jon");
 
-        System.out.println(oldChap.drinkSomeRum());
-        System.out.println(oldChap.drinkSomeRum());
-        System.out.println(oldChap.drinkSomeRum());
-        System.out.println(oldChap.drinkSomeRum());
-        System.out.println(oldChap.drinkSomeRum());
-        System.out.println(oldChap.drinkSomeRum());
-        System.out.println(oldChap.howsItGoingMate());
-        System.out.println(oldChap.drinkSomeRum());
+        Ship newShip = new Ship("New Ship");
+        newShip.fillShip();
+//        System.out.println(newShip.shipInfo());
+        newShip.getCrew().get(0).drinkSomeRum();
+        newShip.getCrew().get(0).drinkSomeRum();
+        newShip.getCrew().get(0).drinkSomeRum();
+        newShip.getCrew().get(0).drinkSomeRum();
+        newShip.getCrew().get(0).drinkSomeRum();
+        newShip.getCrew().get(0).drinkSomeRum();
 
-        System.out.println(oldChap.howsItGoingMate());
-        System.out.println(oldChap.wakeUp());
-        System.out.println(oldChap.wakeUp());
+        System.out.println(newShip.shipInfo());
 
-        System.out.println(oldChap.isAlive());
-        System.out.println(oldJohn.isAlive());
+        Ship oldShip = new Ship("Old Sheep");
+        oldShip.fillShip();
 
-        System.out.println(Pirate.areTheyBothAlive(oldChap,oldJohn));
-        System.out.println(Pirate.isAnyPassedOut(oldChap,oldJohn));
+        System.out.println(oldShip.shipInfo());
 
-        System.out.println(Pirate.brawl(oldChap,oldJohn));
-        System.out.println(oldChap.isAlive());
+        System.out.println(newShip.battle(oldShip));
+
+        System.out.println(newShip.shipInfo());
+        System.out.println(oldShip.shipInfo());
+
 
 
 

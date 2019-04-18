@@ -7,18 +7,25 @@ public class Pirate {
 
     Pirate(String name){
         this.name = name;
+    }
+    String getName(){
+        return this.name;
+    }
 
-    }
     String drinkSomeRum(){
-        if (alive == true && passedOut == false){
-            intoxication++;
-            return this. name + " drinks";
-        } else if (alive == true && passedOut == true){
-            return (this.name + " is passed out");
-        } else {
-            return this.name + " is dead";
+            if (alive == true && passedOut == false) {
+                intoxication++;
+                return this.name + " drinks";
+            } else if (alive == true && passedOut == true) {
+                return (this.name + " is passed out");
+            } else {
+                return this.name + " is dead";
+            }
         }
-    }
+        int getIntoxication(){
+        return this.intoxication;
+        }
+
     String howsItGoingMate() {
         if (alive == true && passedOut == false){
             if (intoxication < 5) {
@@ -43,7 +50,6 @@ public class Pirate {
             return this.name + " says: hey, I am still standing!";
         }
     }
-
 
     void die(){
         alive = false;
@@ -89,5 +95,4 @@ public class Pirate {
             return "They can't fight. One of them is dead.";
         }
     }
-
 }
