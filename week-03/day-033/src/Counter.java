@@ -18,7 +18,7 @@ public class Counter {
     void add(int number) {
         value += number;
     }
-    int getValue(){
+    int get(){
         return value;
     }
     void reset() {

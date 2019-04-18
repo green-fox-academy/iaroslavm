@@ -25,21 +25,33 @@ public class Farm {
     }
 
     void slaughter(){
-        HashMap<Integer,Integer> animalHunger = new HashMap<>(); // create HM key Hunger, value : index
-        int [] animalArray = new int [animanlFarm.size()];
-        for (int i = 0; i < animalArray.length; i++){ //create array with hungers
-            animalArray[i] = animanlFarm.get(i).hunger;
-        }
-        Arrays.sort(animalArray); // sort array with hungers to find minimum hunger
-        for (int i = 0; i < animanlFarm.size(); i++){ // create HM key Hunger, value : index, if there are similar hungers then the index of the last instance will remain a value
-            animalHunger.put(animanlFarm.get(i).hunger,i);
-        }
-        for (int hunger : animalHunger.keySet()) {
-            if (hunger == animalArray[0]){ // for all animals with different levels of hunger if hunger is minimal
-                int i = animalHunger.get(hunger);
-                animanlFarm.remove(i);
+//        HashMap<Integer,Integer> animalHunger = new HashMap<>(); // create HM key Hunger, value : index
+//        int [] animalArray = new int [animanlFarm.size()];
+//        for (int i = 0; i < animalArray.length; i++){ //create array with hungers
+//            animalArray[i] = animanlFarm.get(i).hunger;
+//        }
+//        Arrays.sort(animalArray); // sort array with hungers to find minimum hunger
+//        for (int i = 0; i < animanlFarm.size(); i++){ // create HM key Hunger, value : index, if there are similar hungers then the index of the last instance will remain a value
+//            animalHunger.put(animanlFarm.get(i).hunger,i);
+//        }
+//        for (int hunger : animalHunger.keySet()) {
+//            if (hunger == animalArray[0]){ // for all animals with different levels of hunger if hunger is minimal
+//                int i = animalHunger.get(hunger);
+//                animanlFarm.remove(i);
+
+//            }
+//        }
+        int max = Integer.MAX_VALUE;
+        int targetIndex= 0;
+        int index = 0;
+        for (Animal each : animanlFarm) {
+            if(each.hunger < max) {
+                max = each.hunger;
+                targetIndex = index;
             }
+            index++;
         }
+        animanlFarm.remove(targetIndex);
     }
 
 }

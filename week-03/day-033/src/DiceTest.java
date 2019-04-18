@@ -6,15 +6,23 @@ public class DiceTest {
 
         System.out.println(diceSet.roll());
 
-        for (int i = 0; i < 6; i++) {
-            sixSet.dice.add(i,6);
-        }
-        System.out.println(sixSet.getCurrent());
+//        for (int i = 0; i < 6; i++) {
+//            sixSet.dice.add(i,6);
+//        }
+//        System.out.println(sixSet.getCurrent());
+//
+//        while (!diceSet.getCurrent().equals(sixSet.getCurrent())){
+//            diceSet.reroll();
+//        }
+//        System.out.println("Finally all 6s : " + diceSet.getCurrent());
 
-        while (!diceSet.getCurrent().equals(sixSet.getCurrent())){
-            diceSet.reroll();
+        for(int i = 0; i < diceSet.getCurrent().size(); i++){
+            while(diceSet.getCurrent(i) != 6) {
+                diceSet.reroll(i);
+                System.out.println(diceSet.getCurrent());
+            }
         }
-        System.out.println("Finally all 6s : " + diceSet.getCurrent());
+
 
 
 

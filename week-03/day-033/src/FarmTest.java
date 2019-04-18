@@ -18,15 +18,13 @@ public class FarmTest {
         System.out.println("Number of animals after breeding " + smallFarm.animanlFarm.size());
         System.out.println("Total slots " + smallFarm.slots);
 
-
-
         int [] hungerArray = new int [smallFarm.animanlFarm.size()];
         for (int i = 0; i < smallFarm.animanlFarm.size(); i++) {
             hungerArray[i] = smallFarm.animanlFarm.get(i).hunger;
         }
         System.out.println(Arrays.toString(hungerArray));
 
-        //Noe I will feed with number 15 and 10
+        //Now I will feed with number 15 and 10
 
         for (int i = 0; i < 5; i++){
             smallFarm.animanlFarm.get(15).eat();
