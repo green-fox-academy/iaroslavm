@@ -6,14 +6,13 @@ public class Armada {
     private List<Ship> ships = new ArrayList<>();
     private int armadaSize;
 
-
     Armada(String name) {
         fillArmada(name);
     }
 
     void fillArmada(String name) {
         this.name = name;
-        this.armadaSize = (int) (0 + Math.random() * (5));
+        this.armadaSize = (int) (0 + Math.random() * (50));
         for (int i = 0; i <= this.armadaSize; i++) {
             ships.add(new Ship("Regular Ship"));
         }
@@ -39,10 +38,7 @@ public class Armada {
         int indexOther = 0;
         int indexThis = 0;
 
-//        while (thisShipIndex < thisArmadaSize && otherShipIndex < otherArmadaSize) {
-
         while (thisArmadaSize != 0 && otherArmadaSize != 0) {
-            if (indexThis < thisArmadaSize && indexOther < otherArmadaSize) {
                 if (this.ships.get(indexThis).battle(otherArmada.ships.get(indexOther))) {
                     otherArmadaSize--;
                     otherArmada.ships.get(indexOther).sink();
@@ -52,11 +48,7 @@ public class Armada {
                     this.ships.get(indexThis).sink();
                     indexThis++;
                 }
-            } else {
-                break;
             }
-
-        }
         return (otherArmadaSize == 0);
     }
 }

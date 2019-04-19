@@ -1,38 +1,32 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JosephusProblem {
-
-
     public static void main(String[] args) {
+        List<Integer> numbers = new ArrayList<>();
+        List<Integer> solutions = new ArrayList<>();
 
-        Scanner scanner = new Scanner(System.in);
+        for (int number = 1; number < 17; number ++) {
+            int m = 0;
+            int l;
+            int win;
 
-        System.out.println("Please guess a number of participants:");
-        int number = scanner.nextInt();
+            while (Math.pow(2, m) < number) {
+                if (Math.pow(2, m + 1) > number) {
+                    break;
+                } else {
+                    m++;
+                }
+            }
 
-        int m = 0;
-        int l = 0;
-        int win = 0;
-
-
-
-
-         while ((int) Math.pow(2, m) <= l); {
             l = number - (int) Math.pow(2, m);
-
-            m++;
+            win = 2 * l + 1;
+            numbers.add(number);
+            solutions.add(win);
         }
 
-      //  l = number - (int) Math.pow(2, m);
-        win = 2 * l + 1;
-
-
-
-            System.out.println("Winner is " + win);
-
-
-
-        }
+        System.out.println(numbers);
+        System.out.println(solutions);
     }
+}
 
