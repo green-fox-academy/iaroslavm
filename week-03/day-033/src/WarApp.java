@@ -3,16 +3,15 @@ public class WarApp {
         Armada newArmada = new Armada("New Armada");
         Armada oldArmada = new Armada("Old Armada");
 
-        System.out.println(newArmada.countUnSunk());
+
         System.out.println(oldArmada.countUnSunk());
-
-
-
+        System.out.println(newArmada.countUnSunk());
 
         System.out.println(newArmada.war(oldArmada));
-
-        System.out.println(newArmada.countUnSunk());
         System.out.println(oldArmada.countUnSunk());
+        System.out.println(newArmada.countUnSunk());
+
+
 
 
 
