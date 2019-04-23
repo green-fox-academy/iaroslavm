@@ -4,47 +4,71 @@ public class Aircraft {
     private String type;
     private int maxAmmo;
     private int baseDamage;
-    private int ammoStorage;
+    private int ammo;
 
-    Aircraft(String type, int maxAmmo, int baseDamage) {
+    Aircraft(String type) {
         this.type = type;
-        this.baseDamage = baseDamage;
-        this.maxAmmo = maxAmmo;
-        this.ammoStorage = 0;
+        if (type.equals("F35")) {
+            this.baseDamage = 12;
+            this.maxAmmo = 50;
+        } else {
+            this.baseDamage = 8;
+            this.maxAmmo = 30;
+        }
+        this.ammo = 0;
 
     }
 
-    String getType(){
+    String getType() {
         return this.type;
     }
 
-    String getStatus(){
+    String getStatus() {
         return "Type " + this.type + ", "
-                + "Ammo: " + this.ammoStorage
+                + "Ammo: " + this.ammo
                 + ", Base Damage: " + this.baseDamage
-                + ", All Damage: " + this.baseDamage * this.ammoStorage;
+                + ", All Damage: " + this.baseDamage * this.ammo;
     }
 
-    int fight(){
-        int fightDamage = this.ammoStorage * this.baseDamage;
-        this.ammoStorage = 0;
+    int fight() {
+        int fightDamage = this.ammo * this.baseDamage;
+        this.ammo = 0;
         return fightDamage;
     }
 
     int refill(int maxRefill) {
-        int refillNeed = this.maxAmmo - this.ammoStorage;
-        this.ammoStorage += refillNeed;
+        int refillNeed = this.maxAmmo - this.ammo;
+        this.ammo += refillNeed;
         return maxRefill - refillNeed;
     }
 
-    boolean isPriority (){
-        if(this.type.equals("F35")){
+    boolean isPriority() {
+        if (this.type.equals("F35")) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 
+    int getAmmo() {
+        return this.ammo;
+    }
 
+    int getMaxAmmo() {
+        return this.maxAmmo;
+    }
+
+    int getMaxAmmo(String type) {
+        if (type.equals("F35")) {
+            return this.getMaxAmmo();
+        } else {
+            return this.getMaxAmmo();
+        }
+    }
+
+    int getMaxDamage() {
+        return this.baseDamage * this.ammo;
+    }
 
 }
+
