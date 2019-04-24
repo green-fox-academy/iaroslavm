@@ -27,7 +27,7 @@ public class Aircraft {
         return "Type " + this.type + ", "
                 + "Ammo: " + this.ammo
                 + ", Base Damage: " + this.baseDamage
-                + ", All Damage: " + this.baseDamage * this.ammo;
+                + ", All Damage: " + this.getMaxDamage();
     }
 
     int fight() {

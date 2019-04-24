@@ -110,7 +110,7 @@ public class Carrier {
         this.health -= damage;
     }
 
-    void fight(Carrier otherCarier){
+    void fight(Carrier otherCarrier){
         int myCarrierTotalDamage = 0;
         int otherCarrierTotalDamage = 0;
 
@@ -118,13 +118,13 @@ public class Carrier {
             myCarrierTotalDamage += each.getMaxDamage();
             each.fight();
         }
-        for (Aircraft each : otherCarier.myCarrier) {
+        for (Aircraft each : otherCarrier.myCarrier) {
             otherCarrierTotalDamage += each.getMaxDamage();
             each.fight();
         }
 
         this.setHealth(otherCarrierTotalDamage);
-        otherCarier.setHealth(myCarrierTotalDamage);
+        otherCarrier.setHealth(myCarrierTotalDamage);
     }
 }
 

@@ -18,10 +18,23 @@ public class AircraftTest {
         myCarrier.add("F16");
         myCarrier.add("F16");
 
+        otherCarrier.add("F35");
+        otherCarrier.add("F35");
+        otherCarrier.add("F35");
+        otherCarrier.add("F35");
+        otherCarrier.add("F16");
+        otherCarrier.add("F16");
+        otherCarrier.add("F16");
+        otherCarrier.add("F16");
+
         myCarrier.info();
         myCarrier.fill();
+        otherCarrier.fill();
         myCarrier.info();
 
+        myCarrier.fight(otherCarrier);
+        myCarrier.info();
+        otherCarrier.info();
 
     }
 
