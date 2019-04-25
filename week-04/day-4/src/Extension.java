@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -6,18 +7,33 @@ import java.util.List;
  */
 public class Extension {
     int add(int a, int b) {
-        return 5;
+        return a+b;
     }
 
     int maxOfThree(int a, int b, int c) {
-        if (a > b) {
-            return a;
-        } else
-            return c;
+        if (c <= b){
+            if (b <= a){
+                return a;
+            } else {
+                return b;
+            }
+        } else {
+            if (c >= a) {
+                return c;
+            } else {
+                return a;
+            }
+        }
     }
 
-    int median(List<Integer> pool) {
-        return pool.get((pool.size()-1)/2);
+    double median(List<Integer> pool) {
+        Collections.sort(pool);
+        Integer poolSize = new Integer(pool.size());
+        if(poolSize % 2 == 0){
+            return (double) ((pool.get(poolSize/2 - 1) + pool.get(poolSize/2)) / 2);
+        } else {
+            return (double) (pool.get(poolSize/2));
+        }
     }
 
     boolean isVowel(char c) {

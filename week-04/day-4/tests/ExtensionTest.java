@@ -1,9 +1,9 @@
-import junit.framework.AssertionFailedError;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by aze on 2017.04.04..
@@ -39,7 +39,7 @@ class ExtensionTest {
 
     @Test
     void testMaxOfThree_thirdMine() {
-        assertEquals(5, extension.maxOfThree(3, 4, 10));
+        assertEquals(10, extension.maxOfThree(3, 4, 10));
     }
 
     @Test
