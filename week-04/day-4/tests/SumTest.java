@@ -72,8 +72,6 @@ public class SumTest {
     public void checkSumNull(){
         listNull.add(1);
         listNull.add(null);
-//
-
         assertEquals(1,newSum.sum(listNull));
 
     }
