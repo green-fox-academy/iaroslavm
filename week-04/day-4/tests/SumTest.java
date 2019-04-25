@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class SumTest {
-    SummClass newSum = new SummClass();
+    SummClass newSum = new SummClass(); // do I
     Integer [] intArray = {1,2,3,4};
     Integer [] intArrayOne = {1};
     Integer [] intArrayEmpty = {};
@@ -16,6 +16,7 @@ public class SumTest {
     List<Object> intListOne = Arrays.asList(intArrayOne);
     List<Object> intListEmpty = Arrays.asList(intArrayEmpty);
     List<Object> listObjects = new ArrayList<>();
+    List<Object> listNull = new ArrayList<>();
 
     @Test
     public void checkSum(){
@@ -40,7 +41,7 @@ public class SumTest {
 
     @Test
     public void checkSumOne(){
-//        System.out.println(intListEmpty.toString());
+//
         assertEquals(1,newSum.sum(intListOne));
     }
 
@@ -49,19 +50,41 @@ public class SumTest {
         assertNotEquals(10,newSum.sum(intListOne));
     }
 
-    @Test
+    @Test (expected = ClassCastException.class)
     public void checkSumObject(){
         listObjects.add(1);
-        listObjects.add('b');
-//        System.out.println(intListEmpty.toString());
+        listObjects.add("hello");
+
         assertEquals(1,newSum.sum(listObjects));
+
     }
 
-    @Test
+    @Test (expected = ClassCastException.class)
     public void checkSumFailObject(){
         listObjects.add(1);
-        listObjects.add('b');
+        listObjects.add("hello");
+
         assertNotEquals(10,newSum.sum(listObjects));
+
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void checkSumNull(){
+        listNull.add(1);
+        listNull.add(null);
+//
+
+        assertEquals(1,newSum.sum(listNull));
+
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void checkSumFailNull(){
+        listNull.add(1);
+        listNull.add(null);
+
+        assertNotEquals(10,newSum.sum(listNull));
+
     }
 
 }
