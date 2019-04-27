@@ -10,12 +10,20 @@ public class CabTest {
   @Test
   public void checkCAB() {
     cab = new CAB();
-    assertEquals(8,cab.play(2222,2222));
+    assertEquals(8,cab.play(2222,12222));
   }
 
   @Test
+  public void checkCAB2() {
+    cab = new CAB();
+    assertEquals(8,cab.play(2222,2222));
+  }
+
+
+
+  @Test 
   public void checkCABlong() {
     cab = new CAB();
-    assertNotEquals(8,cab.play(2222,1112222));
+    assertNotEquals(0,cab.play(2222,1112222));
   }
 }
