@@ -1,8 +1,8 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.toMap;
 
 public class ExNineCharFrequency {
   public static Map<Character, Long> getResult(String str){
@@ -12,7 +12,19 @@ public class ExNineCharFrequency {
 
     Map<Character,Long> freqMap = getCharMap(charList);
 
-    return freqMap;
+    List<Map.Entry<Character,Long>> freqMapList = new ArrayList<>(freqMap.entrySet());
+
+    Map<Character, Long> sortedMap =
+        freqMap
+            .entrySet()
+            .stream()
+            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+            .collect(
+                toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2,
+                    LinkedHashMap::new));
+
+
+    return sortedMap;
   }
 
   public static Character [] getCharArray(String str){
@@ -33,10 +45,9 @@ public class ExNineCharFrequency {
 
   public static Map<Character,Long> getCharMap(List<Character> listChar){
     Map<Character,Long> freqMap;
-     freqMap = listChar
-         .stream()
-         .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-
-     return freqMap;
+    freqMap = listChar
+        .stream()
+        .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+    return freqMap;
   }
 }
