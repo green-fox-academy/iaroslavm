@@ -16,12 +16,15 @@ public class DiceTest {
 //        }
 //        System.out.println("Finally all 6s : " + diceSet.getCurrent());
 
+
+        System.out.println(System.nanoTime());
         for(int i = 0; i < diceSet.getCurrent().size(); i++){
             while(diceSet.getCurrent(i) != 6) {
                 diceSet.reroll(i);
                 System.out.println(diceSet.getCurrent());
             }
         }
+        System.out.println(System.nanoTime());
 
 
 
