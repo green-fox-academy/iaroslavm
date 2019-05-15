@@ -19,6 +19,5 @@ public class SpringstartApplication {
   public static String hello(){
     return "Hello World!";
   }
-
 }
 
