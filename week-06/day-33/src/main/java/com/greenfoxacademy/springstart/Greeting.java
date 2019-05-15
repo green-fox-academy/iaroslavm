@@ -1,7 +1,7 @@
 package com.greenfoxacademy.springstart;
 
 public class Greeting {
-  long id = 100;
+  long id = 1;
   String content = "Good day, sir";
 
   public Greeting(long id, String content){
