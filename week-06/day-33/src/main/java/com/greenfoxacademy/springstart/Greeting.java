@@ -1,11 +1,13 @@
 package com.greenfoxacademy.springstart;
 
-public class Greeting {
-  long id = 1;
-  String content = "Good day, sir";
+import java.util.concurrent.atomic.AtomicLong;
 
-  public Greeting(long id, String content){
-    this.id = id;
+public class Greeting {
+  String content = "Good day, sir";
+  private static AtomicLong id = new AtomicLong(); // why it starts from n+1??
+
+
+  public Greeting(String content){
     this.content = content;
   }
 
@@ -13,11 +15,11 @@ public class Greeting {
   }
 
 
-  public long getId() {
+  public AtomicLong getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(AtomicLong id) {
     this.id = id;
   }
 
