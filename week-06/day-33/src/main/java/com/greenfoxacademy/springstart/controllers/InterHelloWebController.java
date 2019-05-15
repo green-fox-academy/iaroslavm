@@ -18,13 +18,24 @@ public class InterHelloWebController {
       "Salve", "Ciao", "Kon-nichiwa", "An-nyong Ha-se-yo", "Salvëte", "Ni hao", "Dzien' dobry", "Olá", "Bunã ziua", "Zdravstvuyte", "Hola", "Jambo", "Hujambo", "Hej",
       "Sa-wat-dee", "Merhaba", "Selam", "Vitayu", "Xin chào", "Hylo", "Sut Mae", "Sholem Aleychem", "Sawubona"};
 
+  private String[] color = {"red","blue","green","brown","black","pink"};
+  private String[] font = {"times","arial","bookman","palatino","impact"};
+
   @RequestMapping("/web/intergreeting")
   public String greeting(Model model, @RequestParam String name) {
     List<String> listString = new ArrayList<>(Arrays.asList(this.hellos));
     int random = (int) (Math.random() * listString.size());
+    int randomColor = (int) (Math.random() * color.length);
+    int randomFont = (int) (Math.random() * font.length);
+    int randomSize = 10 + (int) (Math.random()*100);
     String hello = listString.get(random);
+    String colorIn = color[randomColor];
+    String fontIn = font[randomFont];
     model.addAttribute("name", name);
     model.addAttribute("hello", hello);
+    model.addAttribute("color", colorIn);
+    model.addAttribute("font", fontIn);
+    model.addAttribute("size", randomSize);
     model.addAttribute("time", atomLong.incrementAndGet());
     return "intergreeting";
   }

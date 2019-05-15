@@ -7,8 +7,13 @@
 </head>
 <body>
 <div class="hello">
-<p th:style = "'color:red'" th:text="${hello} + ', ' + ${name} + '!!!!!! This web-site was loaded ' + ${time} + ' since the start.' "/>
-    <p class="hello"><b>wtf</b></p>
+    <span th:style = "'color:' + ${color} + ';font-family:' + ${font} + ';font-size:' + ${size} + 'px'"
+       th:text="${hello}
+       + ', '
+       + ${name}"/>
+    <span th:style = "'color:blue'"
+          th:text=" '!!!!!! This web-site was loaded '
+       + ${time} + ' since the start.' "/>
 </div>
 </body>
 </html>
