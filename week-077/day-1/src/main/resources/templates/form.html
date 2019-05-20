@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+
+<h1>Please choose a character whose account you want to top up</h1>
+<br>
+
+<form th:action="@{/form}" method="post">
+    <select name="var">
+        <div th:each="client : ${clients}">
+            <option th:text="${client.name}" th:value="${client.name}"/>
+        </div>
+
+    </select>
+    <input type="submit" value="Charge">
+</form>
+<br>
+
+</body>
+</html>

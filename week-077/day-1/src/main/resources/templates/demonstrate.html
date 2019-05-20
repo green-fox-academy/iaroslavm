@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>
+            Name:
+        </td>
+        <td>
+            Species:
+        </td>
+        <td>
+            Balance:
+        </td>
+        <td>
+            King:
+        </td>
+        <td>
+            Status Switch:
+        </td>
+        <td>
+            Status Terniary:
+        </td>
+        <td>
+            Index List Static Field:
+        </td>
+        <td>
+            Index List TH Stat:
+        </td>
+        <td>
+            Charge Account:
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:each="account : ${bankAccounts}">
+        <tr  th:class="${account.name.toLowerCase().equals('simba')} ? 'king' : ''">
+            <td th:text="${account.name}"/>
+            <td th:text="${account.animalType}"/>
+            <td th:text="${account.balance}"/>
+            <td th:text="${account.name.toLowerCase().equals('simba')} ? 'Yes' : 'No'"/>
+            <div th:switch="${account.status}">
+                <td th:case="'good'">Good</td>
+                <td th:case="'bad'">Bad</td>
+                <td th:case="'neutral'">Neutral</td>
+            </div>
+            <td th:text="${account.status.toLowerCase().equals('good')} ? 'Good Guy' : 'Not Good Guy' "/>
+            <td th:text="${account.index}"/>
+            <td th:text="${accountStat.index}"/>
+            <td>
+                <form th:action="@{/form}" th:method="post">
+                    <input type="submit" th:value="Donate" name="name"/>
+                </form>
+            </td>
+        </tr>
+    </div>
+    <tr>
+        <form th:action="@{/addAccount}" th:object="${newAccount}" method="post">
+        <td>
+            <input type="text" name="name" placeholder="John" value="John" th:field="*{name}" required/>
+        </td>
+            <td>
+                <input type="text" name="animalType" placeholder="lion" value="Doe" th:field="*{animalType}" required/>
+            </td>
+            <td>
+                <input type="number" name="balance" placeholder="20" value="20" th:field="*{balance}" required/>
+            </td>
+            <td>
+                <input type="text" name="status" placeholder="neutral" value="neutral" th:field="*{status}" required/>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <input type="submit" value="Add"/>
+            </td>
+        </form>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

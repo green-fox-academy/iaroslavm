@@ -1,0 +1,32 @@
+.king
+{
+    color: darkgoldenrod;
+}
+
+.good
+{
+    font-family: "Arial Hebrew";
+}
+
+.bad
+{
+    font-family: "Comic Sans MS";
+}
+
+.notking
+{
+    color: saddlebrown;
+}
+
+table
+{
+    border-collapse: collapse;
+    border: 1px solid darkblue;
+}
+
+td{
+    width: 100px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 5px;
+}

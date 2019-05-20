@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>
+            Name:
+        </td>
+        <td>
+            Species:
+        </td>
+        <td>
+            Balance:
+        </td>
+        <td>
+            King:
+        </td>
+        <td>
+            Status Switch:
+        </td>
+        <td>
+            Status Terniary:
+        </td>
+        <td>
+            Index List Static Field:
+        </td>
+        <td>
+            Index List TH Stat:
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:each="account : ${bankAccounts}">
+        <tr  th:class="${account.name.toLowerCase().equals('simba')} ? 'king' : ''">
+            <td th:text="${account.name}"/>
+            <td th:text="${account.animalType}"/>
+            <td th:text="${account.balance}"/>
+            <td th:text="${account.name.toLowerCase().equals('simba')} ? 'Yes' : 'No'"/>
+            <div th:switch="${account.status}">
+                <td th:case="'good'">Good</td>
+                <td th:case="'bad'">Bad</td>
+                <td th:case="'neutral'">Neutral</td>
+            </div>
+            <td th:text="${account.status.toLowerCase().equals('good')} ? 'Good Guy' : 'Not Good Guy' "/>
+            <td th:text="${account.index}"/>
+            <td th:text="${accountStat.index}"/>
+        </tr>
+    </div>
+    </tbody>
+</table>
+
+</body>
+</html>
