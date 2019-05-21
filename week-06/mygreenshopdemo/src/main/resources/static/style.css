@@ -23,6 +23,10 @@ header
     margin-bottom: 5px;
 }
 
+.navbar
+{
+    margin-bottom: 100px;
+}
 
 .navbar input 
 {
@@ -37,3 +41,42 @@ header
     border: hidden;
     border-radius: 4px;
 }
+
+table
+{
+    border-collapse: collapse;
+    margin-left: 10%;
+}
+.tableHead td
+{
+    background-color: dodgerblue;
+    border: 2px solid aliceblue;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    padding-left: 10px;
+    font-size: 25px;
+    font-family: "Arial Hebrew";
+    color: whitesmoke;
+}
+
+ td
+{
+    background-color: antiquewhite;
+    border: 2px solid antiquewhite;
+    width: 200px;
+    height: 65px;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 25px;
+    font-family: "Arial Hebrew";
+    color: darkslateblue;
+}
+
+ span
+ {
+     font-family: "Arial Hebrew";
+     color: dodgerblue;
+     font-style: oblique;
+     font-size: 50px;
+ }

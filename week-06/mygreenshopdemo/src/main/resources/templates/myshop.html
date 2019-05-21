@@ -7,25 +7,46 @@
 </head>
 <body>
     <div class="navbar">
-        <header th:text="${name}"/>
+        <header th:text="${name}"></header>
         <div class="navbarline">
         </div>
-        <form  action="https://google.com" method="get">
+        <form  action="/myshop/onlyAvailable">
             <input type="submit" value="Only Available">
         </form>       
-        <form  action="https://google.com" method="get">
+        <form  action="/myshop/cheapFirst">
             <input type="submit" value="Cheapest First">
         </form>        
-        <form  action="https://google.com" method="get">
+        <form  action="/myshop/nikeOnly" method="get">
             <input type="submit" value="Contains Nike">
         </form>        
-        <form  action="https://google.com" method="get">
+        <form  action="/myshop/averageStock" method="get">
             <input type="submit" value="Average Stock">
         </form>        
-        <form  action="https://google.com" method="get">
+        <form  action="/myshop/mostExpensive" method="get">
             <input type="submit" value="Most Expensive Available">
         </form>
+    </div >
+    <div class="table" th:if="${condition}">
+    <table>
+        <thead class="tableHead">
+        <tr>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Price, HUF</td>
+        <td>Quantity of Stock</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.getName()}"></td>
+            <td th:text="${item.getDescription()}"></td>
+            <td th:text="${item.getPrice()}"></td>
+            <td th:text="${item.getQuantityOfStock()}"></td>
+        </tr>
+        </tbody>
+    </table>
     </div>
+    <span th:if="${!condition}" th:text="|The everage stock is ${averageStock}|"></span>
 <!--
 <div class="hello">
     <span th:style = "'color:' + ${color} + ';font-family:' + ${font} + ';font-size:' + ${size} + 'px'"
