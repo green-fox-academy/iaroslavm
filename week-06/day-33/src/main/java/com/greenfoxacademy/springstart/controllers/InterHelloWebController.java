@@ -18,7 +18,7 @@ public class InterHelloWebController {
       "Salve", "Ciao", "Kon-nichiwa", "An-nyong Ha-se-yo", "Salvëte", "Ni hao", "Dzien' dobry", "Olá", "Bunã ziua", "Zdravstvuyte", "Hola", "Jambo", "Hujambo", "Hej",
       "Sa-wat-dee", "Merhaba", "Selam", "Vitayu", "Xin chào", "Hylo", "Sut Mae", "Sholem Aleychem", "Sawubona"};
 
-  private String[] color = {"red","blue","green","brown","black","pink"};
+  private String[] color = {"red","blue","green","brown","black","orange"};
   private String[] font = {"times","arial","bookman","palatino","impact"};
 
   @RequestMapping("/web/intergreeting")

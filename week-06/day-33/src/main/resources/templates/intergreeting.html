@@ -10,9 +10,9 @@
     <span th:style = "'color:' + ${color} + ';font-family:' + ${font} + ';font-size:' + ${size} + 'px'"
        th:text="${hello}
        + ', '
-       + ${name}"/>
-    <span th:style = "'color:blue'"
-          th:text=" '!!!!!! This web-site was loaded '
+       + ${name} +'!!!!!'"/>
+    <span th:style = "'color:blue' + ${color} + ';font-family:' + ${font} + ';font-size:' + ${size} + 'px' "
+          th:text=" ' This web-site was loaded '
        + ${time} + ' since the start.' "/>
 </div>
 </body>
