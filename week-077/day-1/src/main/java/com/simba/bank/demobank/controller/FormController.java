@@ -18,7 +18,8 @@ public class FormController {
   @GetMapping("/demonstrate")
   public String show(Model model){
 
-//    model.addAttribute("bankAccounts",bigBank.getBankAccounts());
+    model.addAttribute("bankAccounts",bigBank.getBankAccounts());
+    model.addAttribute("newAccount", new BankAccount());
     return "demonstrate";
   }
 
@@ -30,19 +31,24 @@ public class FormController {
   }
 
   @PostMapping("/form")
-  public String formPost(@ModelAttribute(name="var") String str){ ///if I put name="str" in submit part then I do not need to use model attribute
-    if(str.toLowerCase().equals("simba")) {
+  public String formPost(@ModelAttribute(name="name") String name){ ///if I put name="str" in submit part then I do not need to use model attribute
+    if(name.toLowerCase().equals("simba")) {
       bigBank.getBankAccounts().stream()
-          .filter(x -> x.getName().toLowerCase().equals(str.toLowerCase())).forEach(x -> x.setBalance(x.getBalance() + 100));
+          .filter(x -> x.getName().toLowerCase().equals(name.toLowerCase())).forEach(x -> x.setBalance(x.getBalance() + 100));
     } else {
       bigBank.getBankAccounts().stream()
-          .filter(x -> x.getName().toLowerCase().equals(str.toLowerCase())).forEach(x -> x.setBalance(x.getBalance() + 10));
+          .filter(x -> x.getName().toLowerCase().equals(name.toLowerCase())).forEach(x -> x.setBalance(x.getBalance() + 10));
     }
-    return "demonstrate";
+    return "redirect:/demonstrate";
   }
 
-  @ModelAttribute()
-  public void addAcounts(Model model){ //I need this to add list to model prior to returning to demonstrate page, otherwise I need to use redirect in form
-    model.addAttribute("bankAccounts",bigBank.getBankAccounts());
+  @PostMapping("/addAccount")
+  public String addAccount(BankAccount newAccount){
+    bigBank.addAccount(newAccount);
+    return "redirect:/demonstrate";
   }
+//  @ModelAttribute()
+//  public void addAcounts(Model model){ //I need this to add list to model prior to returning to demonstrate page, otherwise I need to use redirect in form
+//    model.addAttribute("bankAccounts",bigBank.getBankAccounts());
+//  }
 }

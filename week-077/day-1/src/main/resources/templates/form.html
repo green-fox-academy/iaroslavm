@@ -12,7 +12,7 @@
 <br>
 
 <form th:action="@{/form}" method="post">
-    <select name="var">
+    <select name="name">
         <div th:each="client : ${clients}">
             <option th:text="${client.name}" th:value="${client.name}"/>
         </div>

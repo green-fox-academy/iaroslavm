@@ -55,7 +55,7 @@
             <td th:text="${accountStat.index}"/>
             <td>
                 <form th:action="@{/form}" th:method="post">
-                    <input type="submit" th:value="Donate" name="name"/>
+                    <input type="submit" th:value="${account.name}" name="name"/>
                 </form>
             </td>
         </tr>
