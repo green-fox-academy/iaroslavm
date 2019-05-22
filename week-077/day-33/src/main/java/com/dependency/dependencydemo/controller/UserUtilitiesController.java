@@ -38,7 +38,7 @@ public class UserUtilitiesController {
       num=0;
     }
     if(str == null){
-      str="You forgot to give parameters for coding";
+      str="example";
     }
 
     String toPrintCodedWord = utilityService.caesar(str,num);
