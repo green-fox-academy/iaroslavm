@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<h1>Email check:</h1>
+<ul th:class="${emailCondition} ? 'fontGreen' : 'fontRed'">
+    <li th:text="${emailCondition} ? ${email} + ' is a valid email' :  ${email} + ' is not a valid email' "/>
+</ul>
+<a href="/useful">Back to main page</a>
+</body>
+</html>
