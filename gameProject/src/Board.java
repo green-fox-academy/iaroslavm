@@ -49,7 +49,7 @@ public class Board extends JComponent implements KeyListener {
     graphics.fillRect(0,720,720,20);
     graphics.setColor(Color.BLACK);
     String stats = "Game (Level: " + newGame.getGameLevel()
-        + (newGame.isComplete() ? ", complete" : "")
+        + (newGame.isComplete() ? ", completed" : "")
     + "), Hero (Level: " + newGame.getGameHero().getLevel()
          + (newGame.getGameHero().isHasKey() ? ", K" :"")
         + (newGame.getGameHero().isKilledBoss() ? ", B" :"")
