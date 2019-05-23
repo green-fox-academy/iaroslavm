@@ -20,4 +20,16 @@ public class FoxAuthentificationServices {
     }
     return thisFox;
   }
+
+  public Integer loginCheck(String name){
+    int foxIndex = -1;
+    GreenFox thisFox = new GreenFox();
+    for (int i = 0; i < foxList.getListFoxes().size(); i++){
+      if(foxList.getListFoxes().get(i).getName().toLowerCase().equals(name.toLowerCase())){
+        foxIndex = i;
+        break;
+      }
+    }
+    return foxIndex;
+  }
 }
