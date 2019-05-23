@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a th:href="@{'/?name=' + ${foxObject.name}}">Back to main</a></li>
+</ul>
+<h1>Please change nutrition of <span th:text="${foxObject.name.toUpperCase()}"/> here</h1>
+<form th:method="post" th:object="${foxObject}" th:action="@{'/nutritionStore?name=' + ${foxObject.name}}">
+    <label>Food</label>
+    <select th:field="*{food}">
+        <option th:value="'Pizza'" th:text="Pizza"></option>
+        <option th:value="'Pasta'" th:text="Pasta"></option>
+        <option th:value="'Langos'" th:text="Langos"></option>
+    </select>
+    <label>Drink</label>
+    <select th:field="*{drink}">
+        <option th:value="'Water'" th:text="Water"></option>
+        <option th:value="'Lemonade'" th:text="Lemonade"></option>
+        <option th:value="'Juice'" th:text="Juice"></option>
+    </select>
+    <input name="submit" type="submit" value="submit"/>
+</form>
+
+
+</body>

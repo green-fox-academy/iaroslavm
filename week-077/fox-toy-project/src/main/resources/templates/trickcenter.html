@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a th:href="@{'/?name=' + ${foxObject.name}}">Back to main</a></li>
+</ul>
+<h1>Please add tricks of <span th:text="${foxObject.name.toUpperCase()}"/> here</h1>
+<form th:method="post" th:object="${foxObject}" th:action="@{'/trickcenter?name=' + ${foxObject.name}}">
+    <label>Tricks</label>
+    <select th:field="*{newTrick}">
+        <option th:if="!${foxObject.triks.contains('Speak Latin')}" th:value="'Speak Latin'" th:text="'Speak Latin'"></option>
+        <option th:if="!${foxObject.triks.contains('Sick Burns')}" th:value="'Sick Burns'" th:text="'Sick Burns'"></option>
+        <option th:if="!${foxObject.triks.contains('Time management')}" th:value="'Time management'" th:text="'Time management'"></option>
+    </select>
+    <input name="submit" type="submit" value="submit"/>
+</form>
+
+
+</body>
