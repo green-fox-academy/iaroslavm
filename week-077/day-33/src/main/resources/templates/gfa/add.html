@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/style.css}" />
+    <link rel="stylesheet" th:href="@{/style.css}"/>
 </head>
 <body>
 <h1>Add new students to database:</h1>
 <form th:action="@{/gfa/save}" th:method="get">
     <input type="text" placeholder="Name" name="str">
-    <input type="submit" value="Submit">
-<!--    <button>Submit</button>-->
+    <button>Submit</button>
 </form>
+<br>
+<a href="/gfa/check">Check student</a>
+<br>
 <a href="/gfa">Back to main</a>
 </body>
 </html>

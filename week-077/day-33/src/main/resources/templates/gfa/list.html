@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/style.css}" />
+    <link rel="stylesheet" th:href="@{/style.css}"/>
 </head>
 <body>
-<h1>Green Fox student list:</h1>
+<h1>There are <span th:text="${list.size()}"/> students in Green Fox: </h1>
 <ul th:each="student : ${list}">
     <li th:text="${student}"></li>
 </ul>

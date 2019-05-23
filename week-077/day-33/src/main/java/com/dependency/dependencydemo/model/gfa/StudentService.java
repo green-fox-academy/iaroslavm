@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class StudentService {
+public class StudentService implements StudentServiceable {
   ArrayList<String> names;
 
   public StudentService() {
@@ -22,5 +22,9 @@ public class StudentService {
 
   public void save(String student) {
     names.add(student);
+  }
+
+  public boolean check(String student) {
+    return names.contains(student);
   }
 }
