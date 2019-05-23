@@ -16,23 +16,23 @@ public class FormController {
   BigBank bigBank = new BigBank();
 
   @GetMapping("/demonstrate")
-  public String show(Model model){
+  public String show(Model model) {
 
-    model.addAttribute("bankAccounts",bigBank.getBankAccounts());
+    model.addAttribute("bankAccounts", bigBank.getBankAccounts());
     model.addAttribute("newAccount", new BankAccount());
     return "demonstrate";
   }
 
 
   @GetMapping("/form")
-  public String formGet(Model model){
+  public String formGet(Model model) {
     model.addAttribute("clients", bigBank.getBankAccounts());
     return "form";
   }
 
   @PostMapping("/form")
-  public String formPost(@ModelAttribute(name="name") String name){ ///if I put name="str" in submit part then I do not need to use model attribute
-    if(name.toLowerCase().equals("simba")) {
+  public String formPost(@ModelAttribute(name = "name") String name) { ///if I put name="str" in submit part then I do not need to use model attribute
+    if (name.toLowerCase().equals("simba")) {
       bigBank.getBankAccounts().stream()
           .filter(x -> x.getName().toLowerCase().equals(name.toLowerCase())).forEach(x -> x.setBalance(x.getBalance() + 100));
     } else {
@@ -43,7 +43,7 @@ public class FormController {
   }
 
   @PostMapping("/addAccount")
-  public String addAccount(BankAccount newAccount){
+  public String addAccount(BankAccount newAccount) {
     bigBank.addAccount(newAccount);
     return "redirect:/demonstrate";
   }

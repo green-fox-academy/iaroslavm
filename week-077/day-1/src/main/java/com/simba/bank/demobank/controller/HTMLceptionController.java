@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HTMLceptionController {
 
   @GetMapping("/test")
-  public String show(){
+  public String show() {
     return "test";
   }
 }

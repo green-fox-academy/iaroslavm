@@ -9,7 +9,7 @@ public class BankAccount {
   private boolean king;
   private String status;
 
-  public BankAccount(String name, String animalType, double balance, String status){
+  public BankAccount(String name, String animalType, double balance, String status) {
     this.animalType = animalType;
     this.balance = balance;
     this.name = name;
@@ -17,7 +17,7 @@ public class BankAccount {
     this.status = status;
   }
 
-  public BankAccount(){
+  public BankAccount() {
     this.index = indexID++;
 
   }

@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Thymeleaf Exercise #</title>
-    <link rel="stylesheet" th:href="@{/style.css}" />
-    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
 </head>
 <body>
 <table>
@@ -40,7 +40,7 @@
     </thead>
     <tbody>
     <div th:each="account : ${bankAccounts}">
-        <tr  th:class="${account.name.toLowerCase().equals('simba')} ? 'king' : ''">
+        <tr th:class="${account.name.toLowerCase().equals('simba')} ? 'king' : ''">
             <td th:text="${account.name}"/>
             <td th:text="${account.animalType}"/>
             <td th:text="${account.balance}"/>
@@ -62,9 +62,9 @@
     </div>
     <tr>
         <form th:action="@{/addAccount}" th:object="${newAccount}" method="post">
-        <td>
-            <input type="text" name="name" placeholder="John" value="John" th:field="*{name}" required/>
-        </td>
+            <td>
+                <input type="text" name="name" placeholder="John" value="John" th:field="*{name}" required/>
+            </td>
             <td>
                 <input type="text" name="animalType" placeholder="lion" value="Doe" th:field="*{animalType}" required/>
             </td>

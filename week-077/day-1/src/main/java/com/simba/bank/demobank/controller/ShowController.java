@@ -10,9 +10,9 @@ public class ShowController {
   BankAccount newAccount;
 
   @GetMapping("/show")
-  public String show(Model model){
-    newAccount = new BankAccount("Simba","lion",2000, "good");
-    model.addAttribute("newAccount",newAccount);
+  public String show(Model model) {
+    newAccount = new BankAccount("Simba", "lion", 2000, "good");
+    model.addAttribute("newAccount", newAccount);
     return "show";
   }
 }
