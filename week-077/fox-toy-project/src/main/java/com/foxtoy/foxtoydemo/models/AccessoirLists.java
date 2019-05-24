@@ -9,7 +9,7 @@ import java.util.List;
 public class AccessoirLists {
   List<String> trickList = Arrays.asList("Speak latin","Sick burns","Time management", "Backflip");
   List<String> foodList = Arrays.asList("Pizza","Pasta","Lasagnia", "Langos");
-  List<String> drinkList = Arrays.asList("Lemonade","Jiuce","Water","Red Bull");
+  List<String> drinkList = Arrays.asList("Lemonade","Juice","Water","Red Bull");
 
   public List<String> getTrickList() {
     return trickList;

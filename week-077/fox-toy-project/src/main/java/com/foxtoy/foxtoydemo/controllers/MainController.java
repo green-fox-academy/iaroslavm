@@ -85,14 +85,15 @@ public class MainController {
   public String getStore(Model model, @RequestParam(name="name", required = false) String name){
     model.addAttribute("foxObject", foxSerives.foxCheck(name));
     model.addAttribute("foodlist",usefulLists.getFoodList());
+    System.out.println("Hey" + usefulLists.getDrinkList());
     model.addAttribute("drinklist",usefulLists.getDrinkList());
     return "foodstore";
   }
 
   @PostMapping("/nutritionStore")
-  public String postStore(@ModelAttribute GreenFox thisFox){
-    foxSerives.updateFoxFood(thisFox);
-    return "redirect:/?name=" + thisFox.getName();
+  public String postStore(@ModelAttribute GreenFox foxObject){
+    foxSerives.updateFoxFood(foxObject);
+    return "redirect:/?name=" + foxObject.getName();
   }
 
   @GetMapping("/trickcenter")
