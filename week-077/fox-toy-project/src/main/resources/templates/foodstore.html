@@ -12,18 +12,16 @@
 <form th:method="post" th:object="${foxObject}" th:action="@{'/nutritionStore?name=' + ${foxObject.name}}">
     <label>Food</label>
     <select th:field="*{food}">
-        <option th:value="'Pizza'" th:text="Pizza"></option>
-        <option th:value="'Pasta'" th:text="Pasta"></option>
-        <option th:value="'Langos'" th:text="Langos"></option>
+        <option th:each="food : ${foodlist}" th:value="${food.toUpperCase()}" th:text="${food.toUpperCase()}"></option>
     </select>
     <label>Drink</label>
     <select th:field="*{drink}">
-        <option th:value="'Water'" th:text="Water"></option>
-        <option th:value="'Lemonade'" th:text="Lemonade"></option>
-        <option th:value="'Juice'" th:text="Juice"></option>
+        <option th:each="drink : ${drinklist}" th:value="${drink.toUpperCase()}" th:text="${drink.toUpperCase()}"></option>
     </select>
-    <input name="submit" type="submit" value="submit"/>
+    <!--    <input name="submit" type="submit" value="submit"/>-->
+    <button>Submit</button>
 </form>
+
 
 
 </body>

@@ -1,5 +1,6 @@
 package com.foxtoy.foxtoydemo.controllers;
 
+import com.foxtoy.foxtoydemo.models.AccessoirLists;
 import com.foxtoy.foxtoydemo.models.FoxList;
 import com.foxtoy.foxtoydemo.models.GreenFox;
 import com.foxtoy.foxtoydemo.services.FoxAuthentificationServices;
@@ -20,21 +21,30 @@ public class MainController {
   @Autowired
   FoxAuthentificationServices foxSerives;
 
+  @Autowired
+  AccessoirLists usefulLists;
+
   @GetMapping("/")
   public String getMain(Model model, @RequestParam(required = false, name="name") String name){
     if(name == null){
       return "redirect:/simplelogin";
     } else {
       model.addAttribute("foxObject", foxSerives.foxCheck(name));
+      model.addAttribute("tricklist",usefulLists.getTrickList());
       return "index";
     }
   }
 
   @GetMapping("/simplelogin")
-  public String getSimpleLogin(Model model, @RequestParam(required = false, name="name") String login){
-    if(login != null){
-      model.addAttribute("message","is not registered in Fox Club");
-      model.addAttribute("name",login);
+  public String getSimpleLogin(Model model, @RequestParam(required = false, name="name") String login) {
+    if (login != null) {
+      if (login.length() != 0) {
+        model.addAttribute("message", "is not registered in Fox Club");
+        model.addAttribute("name", login);
+      } else {
+        model.addAttribute("message", "Please provide a name");
+        model.addAttribute("name", login);
+      }
     }
     return "simplelogin";
   }
@@ -44,15 +54,23 @@ public class MainController {
                                 @RequestParam(name="register", required = false) String register) {
     if (register == null & login == null) {
       return "redirect:/simplelogin";
+
     } else if (login != null) {
+
       if(foxSerives.loginCheck(login)){
         return "redirect:/?name=" + login;
+
       } else {
         return "redirect:/simplelogin?name=" + login;
+
       }
-    } else // registration != null
-    {
-      return "redirect:/?name=" + foxSerives.register(register);
+    } else {
+      if(register.length() != 0) {
+        return "redirect:/?name=" + foxSerives.register(register);
+      } else {
+        return "redirect:/simplelogin?name=" + register;
+      }
+
     }
   }
 
@@ -66,6 +84,8 @@ public class MainController {
   @GetMapping("/nutritionStore")
   public String getStore(Model model, @RequestParam(name="name", required = false) String name){
     model.addAttribute("foxObject", foxSerives.foxCheck(name));
+    model.addAttribute("foodlist",usefulLists.getFoodList());
+    model.addAttribute("drinklist",usefulLists.getDrinkList());
     return "foodstore";
   }
 
@@ -78,6 +98,7 @@ public class MainController {
   @GetMapping("/trickcenter")
   public String getTrick(Model model, @RequestParam(name="name", required = false) String name){
     model.addAttribute("foxObject", foxSerives.foxCheck(name));
+    model.addAttribute("tricklist",usefulLists.getTrickList());
     return "trickcenter";
   }
 
