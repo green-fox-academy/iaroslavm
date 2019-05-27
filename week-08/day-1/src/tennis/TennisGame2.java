@@ -22,54 +22,8 @@ public class TennisGame2 implements TennisGame
   public String getScore(){
     if (checkifScoresEqual())
       returnScoreIfEqual();
-    if (playerOneScore > 0 && playerTwoScore==0)
-    {
-      if (playerOneScore==1)
-        P1res = "Fifteen";
-      if (playerOneScore==2)
-        P1res = "Thirty";
-      if (playerOneScore==3)
-        P1res = "Forty";
-
-      P2res = "Love";
-      gameScore = P1res + "-" + P2res;
-    }
-    if (playerTwoScore > 0 && playerOneScore==0)
-    {
-      if (playerTwoScore==1)
-        P2res = "Fifteen";
-      if (playerTwoScore==2)
-        P2res = "Thirty";
-      if (playerTwoScore==3)
-        P2res = "Forty";
-
-      P1res = "Love";
-      gameScore = P1res + "-" + P2res;
-    }
-
-    if (playerOneScore>playerTwoScore && playerOneScore < 4)
-    {
-      if (playerOneScore==2)
-        P1res="Thirty";
-      if (playerOneScore==3)
-        P1res="Forty";
-      if (playerTwoScore==1)
-        P2res="Fifteen";
-      if (playerTwoScore==2)
-        P2res="Thirty";
-      gameScore = P1res + "-" + P2res;
-    }
-    if (playerTwoScore>playerOneScore && playerTwoScore < 4)
-    {
-      if (playerTwoScore==2)
-        P2res="Thirty";
-      if (playerTwoScore==3)
-        P2res="Forty";
-      if (playerOneScore==1)
-        P1res="Fifteen";
-      if (playerOneScore==2)
-        P1res="Thirty";
-      gameScore = P1res + "-" + P2res;
+    else if (checkIfRunningGameScore()){
+      getRunningGameScore();
     }
 
     if (playerOneScore > playerTwoScore && playerTwoScore >= 3)
@@ -143,6 +97,32 @@ public class TennisGame2 implements TennisGame
       gameScore += "-All";
     } else
       gameScore = "Deuce";
+  }
+
+  public boolean checkIfRunningGameScore(){
+    return playerOneScore < 4 & playerTwoScore < 4;
+  }
+
+  public void getRunningGameScore(){
+    int tempScore;
+    for(String player : players){
+      if(player.equals(player1Name)){
+        tempScore = playerOneScore;
+      } else {
+        gameScore += "-";
+        tempScore = playerTwoScore;
+      }
+      if (tempScore == 0) {
+        gameScore += "Love";
+      } else if (tempScore == 1) {
+        gameScore += "Fifteen";
+      } else if (tempScore == 2) {
+        gameScore += "Thirty";
+      } else {
+        gameScore += "Forty";
+      }
+
+    }
   }
 
 }
