@@ -2,15 +2,15 @@ package tennis;
 
 public class TennisGame2 implements TennisGame
 {
-  public int playerOneScore = 0;
-  public int playerTwoScore = 0;
+  private int playerOneScore = 0;
+  private int playerTwoScore = 0;
 
-  public String P1res = "";
-  public String P2res = "";
+  private String P1res = "";
+  private String P2res = "";
   private String player1Name;
   private String player2Name;
   private String [] players = new String [2];
-  String gameScore = "";
+  private String gameScore = "";
 
   public TennisGame2(String player1Name, String player2Name) {
     this.player1Name = player1Name;
@@ -20,21 +20,8 @@ public class TennisGame2 implements TennisGame
   }
 
   public String getScore(){
-    if (playerOneScore == playerTwoScore && playerOneScore < 4)
-    {
-      if (playerOneScore==0)
-        gameScore = "Love";
-      if (playerOneScore==1)
-        gameScore = "Fifteen";
-      if (playerOneScore==2)
-        gameScore = "Thirty";
-      if (playerOneScore==3)
-        gameScore = "Forty";
-      gameScore += "-All";
-    }
-    if (playerOneScore==playerTwoScore && playerOneScore>3)
-      gameScore = "Deuce";
-
+    if (checkifScoresEqual())
+      returnScoreIfEqual();
     if (playerOneScore > 0 && playerTwoScore==0)
     {
       if (playerOneScore==1)
@@ -110,7 +97,7 @@ public class TennisGame2 implements TennisGame
 
     for (int i = 0; i < number; i++)
     {
-      P1Score();
+      playerOneScores();
     }
 
   }
@@ -119,25 +106,43 @@ public class TennisGame2 implements TennisGame
 
     for (int i = 0; i < number; i++)
     {
-      P2Score();
+      playerTwoScores();
     }
 
   }
 
-  public void P1Score(){
+  public void playerOneScores(){
     playerOneScore++;
   }
 
-  public void P2Score(){
+  public void playerTwoScores(){
     playerTwoScore++;
   }
 
   public void wonPoint(String player) {
     if (player == "player1")
-      P1Score();
+      playerOneScores();
     else
-      P2Score();
+      playerTwoScores();
   }
 
+  public boolean checkifScoresEqual(){
+    return playerOneScore == playerTwoScore;
+  }
+
+  public void returnScoreIfEqual(){
+    if(playerOneScore <= 3) {
+      if (playerOneScore == 0)
+        gameScore = "Love";
+      if (playerOneScore == 1)
+        gameScore = "Fifteen";
+      if (playerOneScore == 2)
+        gameScore = "Thirty";
+      if (playerOneScore == 3)
+        gameScore = "Forty";
+      gameScore += "-All";
+    } else
+      gameScore = "Deuce";
+  }
 
 }
