@@ -75,7 +75,6 @@ public class TennisGame1 implements TennisGame {
 
   public void getRunningScore() {
     for (String player : players) {
-
       if (player.equals(player1Name)) tempScore = playerOneScore;
       else {
         gameScore += "-";

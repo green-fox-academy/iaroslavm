@@ -24,45 +24,11 @@ public class TennisGame2 implements TennisGame
       returnScoreIfEqual();
     else if (checkIfRunningGameScore()){
       getRunningGameScore();
+    } else {
+      getAdvantageOrWin();
     }
 
-    if (playerOneScore > playerTwoScore && playerTwoScore >= 3)
-    {
-      gameScore = "Advantage player1";
-    }
-
-    if (playerTwoScore > playerOneScore && playerOneScore >= 3)
-    {
-      gameScore = "Advantage player2";
-    }
-
-    if (playerOneScore>=4 && playerTwoScore>=0 && (playerOneScore-playerTwoScore)>=2)
-    {
-      gameScore = "Win for player1";
-    }
-    if (playerTwoScore>=4 && playerOneScore>=0 && (playerTwoScore-playerOneScore)>=2)
-    {
-      gameScore = "Win for player2";
-    }
     return gameScore;
-  }
-
-  public void SetP1Score(int number){
-
-    for (int i = 0; i < number; i++)
-    {
-      playerOneScores();
-    }
-
-  }
-
-  public void SetP2Score(int number){
-
-    for (int i = 0; i < number; i++)
-    {
-      playerTwoScores();
-    }
-
   }
 
   public void playerOneScores(){
@@ -121,7 +87,15 @@ public class TennisGame2 implements TennisGame
       } else {
         gameScore += "Forty";
       }
+    }
+  }
 
+  public void getAdvantageOrWin() {
+    int scoreDifference = playerOneScore - playerTwoScore;
+    if (Math.abs(scoreDifference) == 1) {
+      gameScore = (scoreDifference == 1) ? "Advantage player1" : "Advantage player2";
+    } else {
+      gameScore = (scoreDifference >= 2) ? "Win for player1" : "Win for player2";
     }
   }
 
