@@ -25,6 +25,16 @@ public class GreenFox {
     history.add(dateFormat.format(date) + " : " + this.name + " registered at the Fox Club" );
   }
 
+  public GreenFox(String [] data){
+    this.name = data[0];
+    this.food = data[1];
+    this.drink = data[2];
+    this.triks = Arrays.asList(data[3]);
+    this.history = Arrays.asList(data[4]);
+  }
+
+  public GreenFox(){}
+
   public void learn(String trick){
     if(!this.getTriks().contains(trick)) {
       this.getTriks().add(trick);

@@ -15,7 +15,9 @@
 
     <label>Drink</label>
     <select th:field="*{drink}">
-        <option th:each="drink : ${drinklist}" th:value="${drink.toUpperCase()}" th:text="${drink.toUpperCase()}"></option>
+        <div th:each="drink : ${drinklist}">
+        <option th:value="${drink.toUpperCase()}" th:text="${drink.toUpperCase()}"></option>
+        </div>
     </select>
 
     <label>Food</label>

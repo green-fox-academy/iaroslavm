@@ -13,10 +13,10 @@ public class FoxList {
 
 
   public FoxList(){
-    addFox("Goodest");
-    addFox("Cutest");
-    addFox("Good");
-    addFox("Cute");
+//    addFox("Goodest");
+//    addFox("Cutest");
+//    addFox("Good");
+//    addFox("Cute");
   }
 
   public void addFox(String name){

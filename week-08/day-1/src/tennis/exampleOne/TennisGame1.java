@@ -65,12 +65,10 @@ public class TennisGame1 implements TennisGame {
   }
 
   public void getAdvantageOrWin() {
+    String winningPlayer = "";
     int scoreDifference = playerOneScore - payerTwoScore;
-    if (Math.abs(scoreDifference) == onePoint) {
-      gameScore = (scoreDifference == onePoint) ? "Advantage player1" : "Advantage player2";
-    } else {
-      gameScore = (scoreDifference >= twoPoints) ? "Win for player1" : "Win for player2";
-    }
+    winningPlayer = (playerOneScore > payerTwoScore) ?  player1Name : player2Name;
+    gameScore = (Math.abs(scoreDifference) == onePoint) ? "Advantage " + winningPlayer  : "Win for " + winningPlayer;
   }
 
   public void getRunningScore() {

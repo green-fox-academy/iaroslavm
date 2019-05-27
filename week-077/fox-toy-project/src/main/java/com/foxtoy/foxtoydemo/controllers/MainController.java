@@ -4,6 +4,7 @@ import com.foxtoy.foxtoydemo.models.AccessoirLists;
 import com.foxtoy.foxtoydemo.models.FoxList;
 import com.foxtoy.foxtoydemo.models.GreenFox;
 import com.foxtoy.foxtoydemo.services.FoxAuthentificationServices;
+import com.foxtoy.foxtoydemo.services.SaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +25,15 @@ public class MainController {
   @Autowired
   AccessoirLists usefulLists;
 
+  @Autowired
+  SaveService savings;
+
   @GetMapping("/")
   public String getMain(Model model, @RequestParam(required = false, name="name") String name){
     if(name == null){
       return "redirect:/simplelogin";
     } else {
+//      savings.restoreData("foxInfo.csv");
       model.addAttribute("foxObject", foxSerives.foxCheck(name));
       model.addAttribute("tricklist",usefulLists.getTrickList());
       return "index";
@@ -107,6 +112,20 @@ public class MainController {
   public String postTrick(@ModelAttribute GreenFox thisFox){
     foxSerives.learnTricks(thisFox);
     return "redirect:/?name=" + thisFox.getName();
+  }
+
+  @GetMapping("/history")
+  public String getHistory(Model model, @RequestParam(name="name", required = false) String name){
+    model.addAttribute("foxObject", foxSerives.foxCheck(name));
+    return "history";
+  }
+
+  @GetMapping("/save")
+  public String save(Model model, @RequestParam(name="name", required = false) String name ){
+    savings.createFile("foxInfo.csv");
+    savings.saveFile("foxInfo.csv");
+    savings.loadData("foxInfo.csv");
+    return "redirect:/?name=" + name;
   }
 }
 
