@@ -18,13 +18,20 @@ public class FoxAuthentificationServices {
   @Autowired
   FoxAuthentificationServices foxSerives;
 
+//  public GreenFox foxCheck(String name){
+//    for (GreenFox each : foxList.getListFoxes()){
+//      if (each.getName().toLowerCase().equals(name.toLowerCase())){
+//        return each;
+//      }
+//    }
+//    return new GreenFox("PlaceHolder");
+//  }
+
   public GreenFox foxCheck(String name){
-    for (GreenFox each : foxList.getListFoxes()){
-      if (each.getName().toLowerCase().equals(name.toLowerCase())){
-        return each;
-      }
-    }
-    return new GreenFox("PlaceHolder");
+    return foxList.getListFoxes()
+        .stream().
+            filter(fox -> fox.getName().toLowerCase().equals(name.toLowerCase()))
+        .findFirst().orElse(new GreenFox("PlaceHolder"));
   }
 
   public String register(String name){
