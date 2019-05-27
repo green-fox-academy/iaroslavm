@@ -42,8 +42,8 @@ public class FoxAuthentificationServices {
   }
 
   public boolean loginCheck(String name){
-    return foxList.getListFoxesNames()
-        .stream().map(x -> x.toLowerCase())
+    return foxList.getListFoxes()
+        .stream().map(x -> x.getName().toLowerCase())
         .collect(Collectors.toList()).contains(name.toLowerCase());
   }
 

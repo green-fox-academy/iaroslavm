@@ -30,7 +30,7 @@ public class MainController {
 
   @GetMapping("/")
   public String getMain(Model model, @RequestParam(required = false, name="name") String name){
-    if(name == null || name.length() == 0){
+    if(name == null || !foxSerives.loginCheck(name)){
       return "redirect:/simplelogin";
     } else {
 //      savings.restoreData("foxInfo.csv");
