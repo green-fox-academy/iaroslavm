@@ -46,6 +46,7 @@ public class TennisGame1 implements TennisGame {
     return playerOneScore == payerTwoScore;
   }
 
+
   public void getEqualScore() {
     if (this.playerOneScore == 0) {
       gameScore = "Love-All";
