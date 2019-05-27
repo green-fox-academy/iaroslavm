@@ -10,6 +10,9 @@ public class TennisGame1 implements TennisGame {
   private String player1Name;
   private String player2Name;
   private static final int onePoint = 1;
+  private static final int fourPoints = 4;
+  private static final int twoPoints = 2;
+  private String gameScore = "";
 
   public TennisGame1(String player1Name, String player2Name) {
     this.player1Name = player1Name;
@@ -24,17 +27,13 @@ public class TennisGame1 implements TennisGame {
   }
 
   public String getScore() {
-    String gameScore = "";
+
     int tempScore=0;
     if (checkIfEqualScore()){
-      gameScore =  getEqualScore();
-    } else if (playerOneScore>=4 || payerTwoScore>=4)
+      getEqualScore();
+    } else if (chechIfScoreAboveFour())
     {
-      int minusResult = playerOneScore-payerTwoScore;
-      if (minusResult==1) gameScore ="Advantage player1";
-      else if (minusResult ==-1) gameScore ="Advantage player2";
-      else if (minusResult>=2) gameScore = "Win for player1";
-      else gameScore ="Win for player2";
+      checkScoreDifference();
     }
     else
     {
@@ -66,19 +65,30 @@ public class TennisGame1 implements TennisGame {
     return playerOneScore==payerTwoScore;
   }
 
-  public String getEqualScore(){
-    String result;
+  public void getEqualScore(){
     if(this.playerOneScore == 0){
-      result = "Love-All";
+      gameScore = "Love-All";
     } else if(this.playerOneScore == 1){
-      result = "Fifteen-All";
+      gameScore = "Fifteen-All";
     } else if (this.playerOneScore == 2){
-      result = "Thirty-All";
+      gameScore = "Thirty-All";
     } else if (this.playerOneScore == 3){
-      result = "Forty-All";
+      gameScore = "Forty-All";
     } else {
-      result = "Deuce";
+      gameScore = "Deuce";
     }
-    return result;
+  }
+
+  public boolean chechIfScoreAboveFour(){
+    return playerOneScore >= fourPoints || payerTwoScore >=fourPoints;
+  }
+
+  public void checkScoreDifference(){
+    int scoreDifference = playerOneScore-payerTwoScore;
+    if (Math.abs(scoreDifference) == onePoint) {
+      gameScore = (scoreDifference == onePoint) ? "Advantage player1" : "Advantage player2";
+    } else {
+      gameScore = (scoreDifference >= twoPoints) ? "Win for player1" : "Win for player2";
+    }
   }
 }
