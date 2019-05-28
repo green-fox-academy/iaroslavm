@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Todos for today</h1>
+<!--<ul>-->
+<!--    <li th:each="each : ${todos}" th:text="${each.title}">-->
+<!--    </li>-->
+<!--</ul>-->
+
+<table>
+    <thead>
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Action
+        </th>
+        <th>
+            Done
+        </th>
+        <th>
+            Urgent
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="each : ${todos}">
+        <td th:text="${each.id}"></td>
+        <td th:text="${each.title}"></td>
+        <td th:text="${each.urgent}"></td>
+        <td th:text="${each.done}"></td>
+    </tr>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
