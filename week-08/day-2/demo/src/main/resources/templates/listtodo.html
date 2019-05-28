@@ -16,6 +16,7 @@
         <th>TASK</th>
         <th>DONE</th>
         <th>URGENT</th>
+        <th>DELETE</th>
     </tr>
     </thead>
     <tbody>
@@ -24,8 +25,10 @@
         <td th:text="${each.title}"></td>
         <td th:text="${each.done}"></td>
         <td th:text="${each.urgent}"></td>
+        <td>delete</td>
     </tr>
     </tbody>
 </table>
+<h3><a href="/todo/add">Add new task</a></h3>
 </body>
 </html>
