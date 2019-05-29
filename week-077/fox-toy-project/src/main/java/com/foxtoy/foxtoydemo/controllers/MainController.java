@@ -31,7 +31,7 @@ public class MainController {
   @GetMapping("/")
   public String getMain(Model model, @RequestParam(required = false, name="name") String name){
     if(name == null || !foxSerives.loginCheck(name)){
-      return "redirect:/simplelogin";
+      return "redirect:/login";
     } else {
 //      savings.restoreData("foxInfo.csv");
       model.addAttribute("foxObject", foxSerives.foxCheck(name));
@@ -40,7 +40,46 @@ public class MainController {
     }
   }
 
-  @GetMapping("/simplelogin")
+  @GetMapping("/register")
+  public String register(Model model, @RequestParam(required = false, name="name") String register) {
+    if (register != null) {
+      if (register.length() != 0) {
+        model.addAttribute("message", "is not registered in Fox Club");
+        model.addAttribute("name", register);
+      } else {
+        model.addAttribute("message", "Please provide a name");
+        model.addAttribute("name", register);
+      }
+    }
+    return "register";
+  }
+
+  @PostMapping("/register")
+  public String postRegister(@RequestParam(name="login",required = false) String login,
+                                @RequestParam(name="register", required = false) String register) {
+    if (register == null & login == null) {
+      return "redirect:/register";
+
+    } else if (login != null) {
+
+      if(foxSerives.loginCheck(login)){
+        return "redirect:/?name=" + login;
+
+      } else {
+        return "redirect:/register?name=" + login;
+
+      }
+    } else {
+      if(register.length() != 0) {
+        return "redirect:/?name=" + foxSerives.register(register);
+      } else {
+        return "redirect:/register?name=" + register;
+      }
+
+    }
+  }
+
+  @GetMapping("/login")
   public String getSimpleLogin(Model model, @RequestParam(required = false, name="name") String login) {
     if (login != null) {
       if (login.length() != 0) {
@@ -51,14 +90,14 @@ public class MainController {
         model.addAttribute("name", login);
       }
     }
-    return "simplelogin";
+    return "login";
   }
 
-  @PostMapping("/simplelogin")
+  @PostMapping("/login")
   public String postSimpleLogin(@RequestParam(name="login",required = false) String login,
                                 @RequestParam(name="register", required = false) String register) {
     if (register == null & login == null) {
-      return "redirect:/simplelogin";
+      return "redirect:/login";
 
     } else if (login != null) {
 
@@ -66,14 +105,14 @@ public class MainController {
         return "redirect:/?name=" + login;
 
       } else {
-        return "redirect:/simplelogin?name=" + login;
+        return "redirect:/login?name=" + login;
 
       }
     } else {
       if(register.length() != 0) {
         return "redirect:/?name=" + foxSerives.register(register);
       } else {
-        return "redirect:/simplelogin?name=" + register;
+        return "redirect:/login?name=" + register;
       }
 
     }

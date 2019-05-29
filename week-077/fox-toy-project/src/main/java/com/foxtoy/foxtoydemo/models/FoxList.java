@@ -12,16 +12,10 @@ public class FoxList {
   private List<String> listFoxesNames = new ArrayList<>();
 
 
-  public FoxList(){
-//    addFox("Goodest");
-//    addFox("Cutest");
-//    addFox("Good");
-//    addFox("Cute");
-  }
+  public FoxList(){}
 
   public void addFox(String name){
     listFoxes.add(new GreenFox(name));
-    listFoxesNames.add(name);
   }
 
   public List<GreenFox> getListFoxes() {
