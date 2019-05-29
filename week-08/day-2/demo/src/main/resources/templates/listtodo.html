@@ -17,6 +17,7 @@
         <th>DONE</th>
         <th>URGENT</th>
         <th>DELETE</th>
+        <th>EDIT</th>
     </tr>
     </thead>
     <tbody>
@@ -25,7 +26,8 @@
         <td th:text="${each.title}"></td>
         <td th:text="${each.done}"></td>
         <td th:text="${each.urgent}"></td>
-        <td>delete</td>
+        <td><a th:href="${each.id} + '/delete'"> delete</a></td>
+        <td><a th:href="${each.id} + '/edit'"> edit</a></td>
     </tr>
     </tbody>
 </table>

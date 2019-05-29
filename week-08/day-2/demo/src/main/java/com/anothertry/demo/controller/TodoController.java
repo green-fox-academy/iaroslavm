@@ -38,15 +38,50 @@ public class TodoController {
   }
 
   @GetMapping("/add")
-  public String addGet(Model model) {
+  public String addTask(Model model) {
     model.addAttribute("newTodo", new Todo());
     return "add";
   }
 
   @PostMapping("/add")
-  public String addPost(@ModelAttribute Todo newTodo) {
+  public String postTask(@ModelAttribute Todo newTodo) {
     repository.save(newTodo);
     return "redirect:/todo/";
   }
+
+  @GetMapping("/{id}/delete")
+  public String deleteTask(@PathVariable Long id) {
+    repository.delete(repository.findById(id).orElse(null));
+    return "redirect:/todo/";
+  }
+
+  @GetMapping("/{id}//edit")
+  public String editTask(Model model, @PathVariable Long id) {
+    model.addAttribute("todoEdit", repository.findById(id).orElse(null));
+    return "edit";
+  }
+
+  @PostMapping("/edit")
+  public String editTask(@ModelAttribute Todo thisTodo) {
+    System.out.println(thisTodo.getId());
+    System.out.println(thisTodo.getTitle());
+    repository
+        .findById(thisTodo.getId())
+        .orElse(null)
+        .setDone(thisTodo.isDone());
+    repository
+        .findById(thisTodo.getId())
+        .orElse(null)
+        .setUrgent(thisTodo.isUrgent());
+    repository
+        .findById(thisTodo.getId())
+        .orElse(null)
+        .setTitle(thisTodo.getTitle());
+    repository.save(repository
+        .findById(thisTodo.getId())
+        .orElse(null));
+    return "redirect:/todo/";
+  }
+
 
 }
