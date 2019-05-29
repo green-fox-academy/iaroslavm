@@ -1,6 +1,8 @@
 package com.anothertry.demo;
 
+import com.anothertry.demo.model.TestTodo;
 import com.anothertry.demo.model.Todo;
+import com.anothertry.demo.repository.ITestTodoRepository;
 import com.anothertry.demo.repository.ITodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

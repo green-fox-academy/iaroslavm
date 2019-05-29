@@ -63,23 +63,26 @@ public class TodoController {
 
   @PostMapping("/edit")
   public String editTask(@ModelAttribute Todo thisTodo) {
-    System.out.println(thisTodo.getId());
-    System.out.println(thisTodo.getTitle());
-    repository
-        .findById(thisTodo.getId())
-        .orElse(null)
-        .setDone(thisTodo.isDone());
-    repository
-        .findById(thisTodo.getId())
-        .orElse(null)
-        .setUrgent(thisTodo.isUrgent());
-    repository
-        .findById(thisTodo.getId())
-        .orElse(null)
-        .setTitle(thisTodo.getTitle());
-    repository.save(repository
-        .findById(thisTodo.getId())
-        .orElse(null));
+    System.out.println("new Todo" +thisTodo.getId());
+    System.out.println("new Todo" +thisTodo.getTitle());
+    System.out.println("existing" + repository.findById(thisTodo.getId()).orElse(null).getId());
+    System.out.println("existing" + repository.findById(thisTodo.getId()).orElse(null).getTitle());
+//    repository
+//        .findById(thisTodo.getId())
+//        .orElse(null)
+//        .setDone(thisTodo.isDone());
+//    repository
+//        .findById(thisTodo.getId())
+//        .orElse(null)
+//        .setUrgent(thisTodo.isUrgent());
+//    repository
+//        .findById(thisTodo.getId())
+//        .orElse(null)
+//        .setTitle(thisTodo.getTitle());
+//    repository.save(repository
+//        .findById(thisTodo.getId())
+//        .orElse(null));
+    repository.save(thisTodo);
     return "redirect:/todo/";
   }
 

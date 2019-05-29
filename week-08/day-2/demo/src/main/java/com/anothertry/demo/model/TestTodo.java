@@ -1,34 +1,32 @@
-package com.todoapps.todoapps.models;
+package com.anothertry.demo.model;
 
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="ToDo")
-public class ToDo {
+public class TestTodo {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(nullable = false)
   private long id;
-  private String title;
-  @ColumnDefault(value = "false")
-  private boolean isUrgent;
+  private String name;
   @ColumnDefault(value = "false")
   private boolean isDone;
+  @ColumnDefault(value = "false")
+  private boolean isUrgent;
 
-  public ToDo(String title){
-    this.title = title;
-  }
+  public TestTodo(){ }
 
-  public ToDo(String title, boolean done, boolean urgent){
-    this.title = title;
+
+  public TestTodo(String title, boolean done, boolean urgent) {
+    this.name = title;
     this.isDone = done;
     this.isUrgent = urgent;
   }
 
-  public ToDo(){
+  public TestTodo(String title) {
+    this.name = title;
   }
 
   public long getId() {
@@ -40,19 +38,11 @@ public class ToDo {
   }
 
   public String getTitle() {
-    return title;
+    return name;
   }
 
   public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public boolean isUrgent() {
-    return isUrgent;
-  }
-
-  public void setUrgent(boolean urgent) {
-    isUrgent = urgent;
+    this.name = title;
   }
 
   public boolean isDone() {
@@ -62,6 +52,12 @@ public class ToDo {
   public void setDone(boolean done) {
     isDone = done;
   }
+
+  public boolean isUrgent() {
+    return isUrgent;
+  }
+
+  public void setUrgent(boolean urgent) {
+    isUrgent = urgent;
+  }
 }
-
-
