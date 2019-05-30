@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<li><a th:href="@{'/?name=' + ${name}}">Back to main</a></li>
-<h1>Please change nutrition here</h1>
+<a th:href="@{'/?name=' + ${name}}">Back to main</a>
+<h1>Club members:</h1>
 <ul>
     <li th:each="each : ${foxlist}"><a th:href="@{'/?name=' + ${each.name}}" th:text="${each.name.toUpperCase()}"></a></li>
 </ul>

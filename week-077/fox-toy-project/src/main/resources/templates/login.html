@@ -5,18 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<li><a href="/">Back to main</a></li>
+<a href="/register">Register</a>
 <h1>Please provide the name for the fox below</h1>
-<form th:action="@{/login}" th:method="post">
-    <input type="text" th:name="register" placeholder="Name">
-    <button>Register</button>
-</form>
 <form th:action="@{/login}" th:method="post">
     <input type="text" th:name="login" placeholder="Name">
     <button>Login</button>
 </form>
 <br>
-<h2 th:text="${message != null} ? ${name.toUpperCase()} + ' ' + ${message} : '' "></h2>
+<h2><span th:text="${message != null} ? ${name.toUpperCase()} + ' ' + ${message} : '' "></span></h2>
 
 </body>
 </html>

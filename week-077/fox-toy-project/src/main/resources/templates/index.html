@@ -5,14 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<ul>
-    <li><a href="#">Information</a></li>
-    <li><a href="/register">Register others</a></li>
-    <li><a th:href="@{'/list?name=' + ${foxObject.name}}">These are other club members</a></li>
-    <li><a th:href="@{'/nutritionStore?name=' + ${foxObject.name}}">Nutrition store</a></li>
-    <li><a th:href="@{'/trickcenter?name=' + ${foxObject.name}}">Trick center</a></li>
-    <li><a th:href="@{'/history?name=' + ${foxObject.name}}">Action history</a></li>
-</ul>
+<table>
+    <tr><td><a href="#">Information</a></td></tr>
+    <tr><td><a href="/register">Register others</a></td></tr>
+    <tr><td><a th:href="@{'/list?name=' + ${foxObject.name}}">Club members</a></td></tr>
+    <tr><td><a th:href="@{'/nutritionStore?name=' + ${foxObject.name}}">Nutrition store</a></td></tr>
+    <tr><td><a th:href="@{'/trickcenter?name=' + ${foxObject.name}}">Trick center</a></td></tr>
+    <tr><td><a th:href="@{'/history?name=' + ${foxObject.name}}">Action history</a></td></tr>
+</table>
 
 <img src="/greenfox.png">
 <p>This is <span th:text="${foxObject.name == null} ? 'Mr. Fox.' : ${foxObject.name.toUpperCase()} + '.' "></span>

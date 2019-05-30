@@ -2,40 +2,51 @@ package com.foxtoy.foxtoydemo.models;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.sql.SQLOutput;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+@Entity
 public class GreenFox {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long id;
   private String name;
   private String food = "PIZZA";
   private String drink = "LEMONADE";
-  private List<String> triks = new ArrayList<>();
+  @Column
+  @ElementCollection(targetClass=String.class)
+  private List<String> tricks = new ArrayList<>();
   private String newTrick;
+  @Column
+  @ElementCollection(targetClass=String.class)
   private List<String> history = new ArrayList<>();
-  DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+
 
 
   public GreenFox(String name){
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
     this.name = name;
     Date date = Calendar.getInstance().getTime();
     history.add(dateFormat.format(date) + " : " + this.name + " registered at the Fox Club" );
   }
 
-  public GreenFox(String [] data){
-    this.name = data[0];
-    this.food = data[1];
-    this.drink = data[2];
-    this.triks = Arrays.asList(data[3]);
-    this.history = Arrays.asList(data[4]);
-  }
+//  public GreenFox(String [] data){
+//    this.name = data[0];
+//    this.food = data[1];
+//    this.drink = data[2];
+//    this.tricks = Arrays.asList(data[3]);
+//    this.history = Arrays.asList(data[4]);
+//  }
 
   public GreenFox(){}
 
   public void learn(String trick){
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
     if(!this.getTriks().contains(trick)) {
       this.getTriks().add(trick);
     }
@@ -56,6 +67,7 @@ public class GreenFox {
   }
 
   public void setFood(String food) {
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
     String tempFood = this.food;
     Date date = Calendar.getInstance().getTime();
     if(!this.food.equals(food)) {
@@ -70,6 +82,7 @@ public class GreenFox {
   }
 
   public void setDrink(String drink) {
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
     String tempDrink = this.drink;
     Date date = Calendar.getInstance().getTime();
     if(!this.drink.equals(drink)) {
@@ -79,11 +92,11 @@ public class GreenFox {
   }
 
   public List<String> getTriks() {
-    return triks;
+    return tricks;
   }
 
   public void setTriks(List<String> triks) {
-    this.triks = triks;
+    this.tricks = triks;
   }
 
   public String getNewTrick() {
@@ -106,11 +119,11 @@ public class GreenFox {
     this.history = history;
   }
 
-  public DateFormat getDateFormat() {
-    return dateFormat;
+  public long getId() {
+    return id;
   }
 
-  public void setDateFormat(DateFormat dateFormat) {
-    this.dateFormat = dateFormat;
+  public void setId(long id) {
+    this.id = id;
   }
 }

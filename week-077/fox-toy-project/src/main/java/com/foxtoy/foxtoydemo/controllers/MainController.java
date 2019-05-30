@@ -3,8 +3,9 @@ package com.foxtoy.foxtoydemo.controllers;
 import com.foxtoy.foxtoydemo.models.AccessoirLists;
 import com.foxtoy.foxtoydemo.models.FoxList;
 import com.foxtoy.foxtoydemo.models.GreenFox;
+import com.foxtoy.foxtoydemo.repository.IFoxRepository;
 import com.foxtoy.foxtoydemo.services.FoxAuthentificationServices;
-import com.foxtoy.foxtoydemo.services.SaveService;
+//import com.foxtoy.foxtoydemo.services.SaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
 
   @Autowired
+  IFoxRepository repository;
+
+  @Autowired
   FoxList foxList;
 
   @Autowired
@@ -25,8 +29,8 @@ public class MainController {
   @Autowired
   AccessoirLists usefulLists;
 
-  @Autowired
-  SaveService savings;
+//  @Autowired
+//  SaveService savings;
 
   @GetMapping("/")
   public String getMain(Model model, @RequestParam(required = false, name="name") String name){
@@ -36,6 +40,7 @@ public class MainController {
 //      savings.restoreData("foxInfo.csv");
       model.addAttribute("foxObject", foxSerives.foxCheck(name));
       model.addAttribute("tricklist",usefulLists.getTrickList());
+
       return "index";
     }
   }
@@ -43,10 +48,7 @@ public class MainController {
   @GetMapping("/register")
   public String register(Model model, @RequestParam(required = false, name="name") String register) {
     if (register != null) {
-      if (register.length() != 0) {
-        model.addAttribute("message", "is not registered in Fox Club");
-        model.addAttribute("name", register);
-      } else {
+      if (register.length() == 0) {
         model.addAttribute("message", "Please provide a name");
         model.addAttribute("name", register);
       }
@@ -57,25 +59,14 @@ public class MainController {
   @PostMapping("/register")
   public String postRegister(@RequestParam(name="login",required = false) String login,
                                 @RequestParam(name="register", required = false) String register) {
-    if (register == null & login == null) {
+    if (register == null) {
       return "redirect:/register";
-
-    } else if (login != null) {
-
-      if(foxSerives.loginCheck(login)){
-        return "redirect:/?name=" + login;
-
-      } else {
-        return "redirect:/register?name=" + login;
-
-      }
     } else {
       if(register.length() != 0) {
         return "redirect:/?name=" + foxSerives.register(register);
       } else {
         return "redirect:/register?name=" + register;
       }
-
     }
   }
 
@@ -83,7 +74,7 @@ public class MainController {
   public String getSimpleLogin(Model model, @RequestParam(required = false, name="name") String login) {
     if (login != null) {
       if (login.length() != 0) {
-        model.addAttribute("message", "is not registered in Fox Club");
+        model.addAttribute("message", "is not registered in Fox Club. Please register!");
         model.addAttribute("name", login);
       } else {
         model.addAttribute("message", "Please provide a name");
@@ -96,25 +87,14 @@ public class MainController {
   @PostMapping("/login")
   public String postSimpleLogin(@RequestParam(name="login",required = false) String login,
                                 @RequestParam(name="register", required = false) String register) {
-    if (register == null & login == null) {
+    if (login == null) {
       return "redirect:/login";
-
-    } else if (login != null) {
-
+    } else {
       if(foxSerives.loginCheck(login)){
         return "redirect:/?name=" + login;
-
       } else {
         return "redirect:/login?name=" + login;
-
       }
-    } else {
-      if(register.length() != 0) {
-        return "redirect:/?name=" + foxSerives.register(register);
-      } else {
-        return "redirect:/login?name=" + register;
-      }
-
     }
   }
 
@@ -159,13 +139,13 @@ public class MainController {
     return "history";
   }
 
-  @GetMapping("/save")
-  public String save(Model model, @RequestParam(name="name", required = false) String name ){
-    savings.createFile("foxInfo.csv");
-    savings.saveFile("foxInfo.csv");
-    savings.loadData("foxInfo.csv");
-    return "redirect:/?name=" + name;
-  }
+//  @GetMapping("/save")
+//  public String save(Model model, @RequestParam(name="name", required = false) String name ){
+////    savings.createFile("foxInfo.csv");
+////    savings.saveFile("foxInfo.csv");
+////    savings.loadData("foxInfo.csv");
+//    return "redirect:/?name=" + name;
+//  }
 }
 
 

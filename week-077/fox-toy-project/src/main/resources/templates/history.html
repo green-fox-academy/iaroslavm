@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<li><a th:href="@{'/?name=' + ${foxObject.name}}">Back to main</a></li>
+<a th:href="@{'/?name=' + ${foxObject.name}}">Back to main</a>
 <h1>Below is full activity history of <span th:text="${foxObject.name}"></span></h1>
 <ul>
     <li th:each="each : ${foxObject.history}"><a th:text="${each}"></a></li>

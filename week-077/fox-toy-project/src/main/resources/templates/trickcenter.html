@@ -5,9 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<ul>
-    <li><a th:href="@{'/?name=' + ${foxObject.name}}">Back to main</a></li>
-</ul>
+    <a th:href="@{'/?name=' + ${foxObject.name}}">Back to main</a>
 <h1>Please add tricks of <span th:text="${foxObject.name.toUpperCase()}"></span> here</h1>
 <form th:if="${foxObject.triks.size() < tricklist.size()}" th:method="post" th:object="${foxObject}" th:action="@{'/trickcenter'}">
     <label>Tricks</label>
