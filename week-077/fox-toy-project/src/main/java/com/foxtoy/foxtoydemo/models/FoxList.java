@@ -1,6 +1,5 @@
 package com.foxtoy.foxtoydemo.models;
 
-import com.foxtoy.foxtoydemo.services.FoxAuthentificationServices;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,9 +13,6 @@ public class FoxList {
 
   public FoxList(){}
 
-  public void addFox(String name){
-    listFoxes.add(new GreenFox(name));
-  }
 
   public List<GreenFox> getListFoxes() {
     return listFoxes;

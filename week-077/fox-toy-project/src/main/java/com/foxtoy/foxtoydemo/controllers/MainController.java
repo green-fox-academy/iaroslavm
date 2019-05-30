@@ -1,10 +1,9 @@
 package com.foxtoy.foxtoydemo.controllers;
 
-import com.foxtoy.foxtoydemo.models.AccessoirLists;
-import com.foxtoy.foxtoydemo.models.FoxList;
+import com.foxtoy.foxtoydemo.models.ExtraList;
 import com.foxtoy.foxtoydemo.models.GreenFox;
 //import com.foxtoy.foxtoydemo.repository.IFoxRepository;
-import com.foxtoy.foxtoydemo.services.FoxAuthentificationServices;
+import com.foxtoy.foxtoydemo.services.FoxServicesImp;
 //import com.foxtoy.foxtoydemo.services.SaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,13 +20,8 @@ public class MainController {
 //  IFoxRepository repository;
 
   @Autowired
-  FoxList foxList;
+  FoxServicesImp foxSerives;
 
-  @Autowired
-  FoxAuthentificationServices foxSerives;
-
-  @Autowired
-  AccessoirLists usefulLists;
 
 //  @Autowired
 //  SaveService savings;
@@ -39,7 +33,7 @@ public class MainController {
     } else {
 //      savings.restoreData("foxInfo.csv");
       model.addAttribute("foxObject", foxSerives.foxCheck(name));
-      model.addAttribute("tricklist",usefulLists.getTrickList());
+      model.addAttribute("tricklist",foxSerives.getTricks());
 
       return "index";
     }
@@ -100,7 +94,7 @@ public class MainController {
 
   @GetMapping("/list")
   public String getList(Model model, @RequestParam(required = false, name="name") String name){
-    model.addAttribute("foxlist", foxList.getListFoxes());
+    model.addAttribute("foxlist", foxSerives.getFoxesList());
     model.addAttribute("name", name);
     return "list";
   }
@@ -108,9 +102,8 @@ public class MainController {
   @GetMapping("/nutritionStore")
   public String getStore(Model model, @RequestParam(name="name", required = false) String name){
     model.addAttribute("foxObject", foxSerives.foxCheck(name));
-    model.addAttribute("foodlist",usefulLists.getFoodList());
-    System.out.println("Hey" + usefulLists.getDrinkList());
-    model.addAttribute("drinklist",usefulLists.getDrinkList());
+    model.addAttribute("foodlist",foxSerives.getFoods());
+    model.addAttribute("drinklist",foxSerives.getDrinks());
     return "foodstore";
   }
 
@@ -123,7 +116,7 @@ public class MainController {
   @GetMapping("/trickcenter")
   public String getTrick(Model model, @RequestParam(name="name", required = false) String name){
     model.addAttribute("foxObject", foxSerives.foxCheck(name));
-    model.addAttribute("tricklist",usefulLists.getTrickList());
+    model.addAttribute("tricklist",foxSerives.getTricks());
     return "trickcenter";
   }
 
@@ -138,14 +131,6 @@ public class MainController {
     model.addAttribute("foxObject", foxSerives.foxCheck(name));
     return "history";
   }
-
-//  @GetMapping("/save")
-//  public String save(Model model, @RequestParam(name="name", required = false) String name ){
-////    savings.createFile("foxInfo.csv");
-////    savings.saveFile("foxInfo.csv");
-////    savings.loadData("foxInfo.csv");
-//    return "redirect:/?name=" + name;
-//  }
 }
 
 

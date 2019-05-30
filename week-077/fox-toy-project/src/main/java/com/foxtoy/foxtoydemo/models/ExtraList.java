@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class AccessoirLists {
+public class ExtraList {
   List<String> trickList = Arrays.asList("Speak latin","Sick burns","Time management", "Backflip");
   List<String> foodList = Arrays.asList("Pizza","Pasta","Lasagnia", "Langos");
   List<String> drinkList = Arrays.asList("Lemonade","Juice","Water","Red Bull");
