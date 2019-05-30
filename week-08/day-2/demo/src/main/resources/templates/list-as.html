@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel = "stylesheet"
+          type = "text/css"
+          th:href = "@{/style.css}" />
+</head>
+<body>
+<h1>Assignees</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>EMAIL</th>
+        <th>EDIT</th>
+        <th>DELETE</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="each : ${aslist}">
+        <td th:text="${each.id}"></td>
+        <td th:text="${each.name}"></td>
+        <td th:text="${each.email}"></td>
+        <td><a th:href="'/todo/' + ${each.id} + '/editas'"> edit name</a></td>
+        <td><a th:href="'/todo/' + ${each.id} + '/delete'"> delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<h3><a href="/todo/addas">Add new Asignee</a></h3>
+<h3><a href="/todo/list">Back to list</a></h3>
+</body>
+</html>

@@ -1,7 +1,9 @@
 package com.anothertry.demo.controller;
 
+import com.anothertry.demo.model.Asignee;
 import com.anothertry.demo.model.Todo;
-import com.anothertry.demo.repository.ITodoRepository;
+import com.anothertry.demo.services.AsService;
+import com.anothertry.demo.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +19,19 @@ import java.util.stream.Collectors;
 public class TodoController {
 
   @Autowired
-  ITodoRepository repository;
+  IService service;
+
+  @Autowired
+  AsService asService;
 
   @RequestMapping(value = {"/list", "/"}, method = RequestMethod.GET)
-  public String list(Model model, @RequestParam(name = "isActive", required = false) String isActive) {
+  public String list(Model model, @RequestParam(name = "isActive", required = false) String isActive,
+                     @RequestParam(name = "searchKey", required = false) String searchKey) {
     List<Todo> todos = new ArrayList<>();
-    repository.findAll().forEach(todos::add);
+    service.findAll().forEach(todos::add);
+
+    model.addAttribute("assigneelist",asService.findAll());
+
 
     if (isActive != null) {
       if (isActive.equals("true")) {
@@ -31,59 +40,88 @@ public class TodoController {
         model.addAttribute("todos", todos.stream().filter(Todo::isDone).collect(Collectors.toList()));
       }
     } else {
-      model.addAttribute("todos", todos);
+      if(searchKey == null) {
+        model.addAttribute("todos", todos);
+      } else {
+       service.search(searchKey, model);
+      }
     }
+    return "list";
+  }
 
-    return "listtodo";
+  @GetMapping("/aslist")
+  public String aslist(Model model) {
+    model.addAttribute("aslist", asService.findAll());
+    return "list-as";
+  }
+
+  @GetMapping("/addas")
+  public String addAs(Model model) {
+    model.addAttribute("newAs", new Asignee());
+    return "add-as";
+  }
+
+
+  @PostMapping("/addas")
+  public String postAs(@ModelAttribute Asignee newAsignee) {
+    asService.addAsignee(newAsignee);
+    return "redirect:/todo/aslist";
   }
 
   @GetMapping("/add")
   public String addTask(Model model) {
     model.addAttribute("newTodo", new Todo());
-    return "add";
+    return "add-todo";
   }
 
   @PostMapping("/add")
   public String postTask(@ModelAttribute Todo newTodo) {
-    repository.save(newTodo);
+    service.save(newTodo);
     return "redirect:/todo/";
   }
 
+
+
   @GetMapping("/{id}/delete")
   public String deleteTask(@PathVariable Long id) {
-    repository.delete(repository.findById(id).orElse(null));
+    service.deleteById(id);
     return "redirect:/todo/";
   }
 
   @GetMapping("/{id}//edit")
   public String editTask(Model model, @PathVariable Long id) {
-    model.addAttribute("todoEdit", repository.findById(id).orElse(null));
-    return "edit";
+    model.addAttribute("todoEdit", service.findById(id));
+    return "edit-todo";
   }
+
 
   @PostMapping("/edit")
   public String editTask(@ModelAttribute Todo thisTodo) {
-    System.out.println("new Todo" +thisTodo.getId());
-    System.out.println("new Todo" +thisTodo.getTitle());
-    System.out.println("existing" + repository.findById(thisTodo.getId()).orElse(null).getId());
-    System.out.println("existing" + repository.findById(thisTodo.getId()).orElse(null).getTitle());
-//    repository
-//        .findById(thisTodo.getId())
-//        .orElse(null)
-//        .setDone(thisTodo.isDone());
-//    repository
-//        .findById(thisTodo.getId())
-//        .orElse(null)
-//        .setUrgent(thisTodo.isUrgent());
-//    repository
-//        .findById(thisTodo.getId())
-//        .orElse(null)
-//        .setTitle(thisTodo.getTitle());
-//    repository.save(repository
-//        .findById(thisTodo.getId())
-//        .orElse(null));
-    repository.save(thisTodo);
+    service.save(thisTodo);
     return "redirect:/todo/";
+  }
+
+  @GetMapping("/{id}/editas")
+  public String editAs(Model model, @PathVariable Long id) {
+    model.addAttribute("asEdit", asService.findById(id));
+    return "edit-as";
+  }
+
+  @PostMapping("/editas")
+  public String editAs(@ModelAttribute Asignee thisAs) {
+    asService.addAsignee(thisAs);
+    return "redirect:/todo/aslist";
+  }
+
+  @GetMapping("/item/{id}")
+  public String getDescription(@PathVariable Long id, Model model){
+    model.addAttribute("todoObject", service.findById(id));
+    return "item-description";
+  }
+
+  @PostMapping("/search")
+  public String search(String searchKey){
+    return "redirect:/todo/list?searchKey=" + searchKey;
   }
 
 

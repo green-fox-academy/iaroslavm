@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel = "stylesheet"
+          type = "text/css"
+          th:href = "@{/style.css}" />
+</head>
+<body>
+<h1> This is information for selected task: <span th:text="${todoObject.title}"></span></h1>
+<p th:text="${todoObject.description}"></p>
+<h3><a href="/todo/list">Back to list</a></h3>
+</body>
+</html>

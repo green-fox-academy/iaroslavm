@@ -11,6 +11,7 @@ public class Todo {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   private String title;
+  private String description;
   @ColumnDefault(value = "false")
   private boolean isDone;
   @ColumnDefault(value = "false")
@@ -19,10 +20,11 @@ public class Todo {
   public Todo(){ }
 
 
-  public Todo(String title, boolean done, boolean urgent) {
+  public Todo(String title, boolean done, boolean urgent, String description) {
     this.title = title;
     this.isDone = done;
     this.isUrgent = urgent;
+    this.description = description;
   }
 
   public Todo(String title) {
@@ -59,5 +61,13 @@ public class Todo {
 
   public void setUrgent(boolean urgent) {
     isUrgent = urgent;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 }
