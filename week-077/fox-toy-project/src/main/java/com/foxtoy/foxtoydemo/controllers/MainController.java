@@ -1,8 +1,10 @@
 package com.foxtoy.foxtoydemo.controllers;
 
 import com.foxtoy.foxtoydemo.models.ExtraList;
+import com.foxtoy.foxtoydemo.models.FoxList;
 import com.foxtoy.foxtoydemo.models.GreenFox;
 //import com.foxtoy.foxtoydemo.repository.IFoxRepository;
+import com.foxtoy.foxtoydemo.services.FoxServices;
 import com.foxtoy.foxtoydemo.services.FoxServicesImp;
 //import com.foxtoy.foxtoydemo.services.SaveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ public class MainController {
 //  IFoxRepository repository;
 
   @Autowired
-  FoxServicesImp foxSerives;
+  FoxServices foxSerives;
 
 
 //  @Autowired
