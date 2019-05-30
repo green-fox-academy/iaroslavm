@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{'/?name=' + ${name}}">Back to main</a>
+<h1>Club members:</h1>
+<ul>
+    <li th:each="each : ${foxlist}"><a th:href="@{'/?name=' + ${each.name}}" th:text="${each.name.toUpperCase()}"></a></li>
+</ul>
+</body>
