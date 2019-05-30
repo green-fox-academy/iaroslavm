@@ -2,28 +2,28 @@ package com.foxtoy.foxtoydemo.models;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.sql.SQLOutput;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Entity
+//@Entity
 public class GreenFox {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+//  @Id
+//  @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   private String name;
   private String food = "PIZZA";
   private String drink = "LEMONADE";
-  @Column
-  @ElementCollection(targetClass=String.class)
+//  @Column
+//  @ElementCollection(targetClass=String.class)
   private List<String> tricks = new ArrayList<>();
   private String newTrick;
-  @Column
-  @ElementCollection(targetClass=String.class)
+//  @Column
+//  @ElementCollection(targetClass=String.class)
   private List<String> history = new ArrayList<>();
 
 

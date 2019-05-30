@@ -3,7 +3,7 @@ package com.foxtoy.foxtoydemo.controllers;
 import com.foxtoy.foxtoydemo.models.AccessoirLists;
 import com.foxtoy.foxtoydemo.models.FoxList;
 import com.foxtoy.foxtoydemo.models.GreenFox;
-import com.foxtoy.foxtoydemo.repository.IFoxRepository;
+//import com.foxtoy.foxtoydemo.repository.IFoxRepository;
 import com.foxtoy.foxtoydemo.services.FoxAuthentificationServices;
 //import com.foxtoy.foxtoydemo.services.SaveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller("/index")
 public class MainController {
 
-  @Autowired
-  IFoxRepository repository;
+//  @Autowired
+//  IFoxRepository repository;
 
   @Autowired
   FoxList foxList;

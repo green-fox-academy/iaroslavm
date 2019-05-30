@@ -2,7 +2,7 @@ package com.foxtoy.foxtoydemo.services;
 
 import com.foxtoy.foxtoydemo.models.FoxList;
 import com.foxtoy.foxtoydemo.models.GreenFox;
-import com.foxtoy.foxtoydemo.repository.IFoxRepository;
+//import com.foxtoy.foxtoydemo.repository.IFoxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -16,8 +16,8 @@ public class FoxAuthentificationServices {
   @Autowired
   FoxList foxList;
 
-  @Autowired
-  IFoxRepository repository;
+//  @Autowired
+//  IFoxRepository repository;
 
 //  public GreenFox foxCheck(String name){
 //    for (GreenFox each : foxList.getListFoxes()){
@@ -58,7 +58,7 @@ public class FoxAuthentificationServices {
         .stream()
         .filter(x -> x.getName().toLowerCase().equals(fox.getName().toLowerCase()))
         .forEach(x -> x.setFood(fox.getFood()));
-    repository.save(fox);
+//    repository.save(fox);
   }
 
   public void learnTricks(GreenFox fox){
@@ -66,7 +66,7 @@ public class FoxAuthentificationServices {
         .stream()
         .filter(x -> x.getName().toLowerCase().equals(fox.getName().toLowerCase()))
         .forEach(x -> x.learn(fox.getNewTrick()));
-    repository.save(fox);
+//    repository.save(fox);
   }
 
 
