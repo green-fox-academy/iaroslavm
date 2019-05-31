@@ -6,6 +6,7 @@ import com.anothertry.demo.model.Todo;
 import com.anothertry.demo.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -38,6 +39,11 @@ public class UserServiceImp implements UserService {
   @Override
   public void deleteByID(long id) {
     userRepository.deleteById(id);
+  }
+
+  @Override
+  public void addUserList(Model model) {
+    model.addAttribute("userList", userRepository.findAll());
   }
 
 

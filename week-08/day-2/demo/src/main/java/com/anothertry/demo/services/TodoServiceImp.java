@@ -55,4 +55,40 @@ public class TodoServiceImp implements TodoService {
   public List<Todo> searchByUserID(Long id) {
     return repository.findAllByUser_Id(id);
   }
+
+  @Override
+  public boolean isActiveNotNull(String isActive) {
+    return isActive != null;
+  }
+
+  @Override
+  public boolean isKeywordNotNull(String keyWord) {
+    return keyWord != null;
+  }
+
+  @Override
+  public boolean isIdNotNull(Long id) {
+    return id != null;
+  }
+
+  @Override
+  public void generateIndexLayout(Model model, String isActive, String keyWord, Long id) {
+    if (isActiveNotNull(isActive)) model.addAttribute("todos", findAll()
+        .stream()
+        .filter(todo -> !todo.isDone()));
+
+    if (isKeywordNotNull(keyWord)) model.addAttribute("todos", findAll()
+        .stream()
+        .filter(todo -> todo.getDescription().toLowerCase().contains(keyWord) || todo.getTitle().toLowerCase().contains(keyWord)));
+
+    if (isIdNotNull(id))  {
+      if(id != 0) model.addAttribute("todos", searchByUserID(id));
+      else model.addAttribute("todos", findAll());
+    }
+
+    if (!isIdNotNull(id) & !isKeywordNotNull(keyWord) & !isActiveNotNull(isActive)) {
+        model.addAttribute("todos", findAll());
+
+    }
+  }
 }

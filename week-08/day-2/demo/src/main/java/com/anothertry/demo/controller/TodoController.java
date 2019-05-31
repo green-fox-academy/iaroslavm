@@ -28,29 +28,9 @@ public class TodoController {
   public String list(Model model, @RequestParam(name = "isActive", required = false) String isActive,
                      @RequestParam(name = "searchKey", required = false) String searchKey,
                      @RequestParam(name = "id", required = false) Long id) {
-    List<Todo> todos = new ArrayList<>();
-    service.findAll().forEach(todos::add);
+    userService.addUserList(model);
 
-    model.addAttribute("userList", userService.findAll());
-
-
-    if (isActive != null) {
-      if (isActive.equals("true")) {
-        model.addAttribute("todos", todos.stream().filter(todo -> !todo.isDone()).collect(Collectors.toList()));
-      } else {
-        model.addAttribute("todos", todos.stream().filter(Todo::isDone).collect(Collectors.toList()));
-      }
-    } else {
-      if(searchKey == null & id == null) {
-        model.addAttribute("todos", todos);
-      } else if (searchKey != null){
-       service.search(searchKey, model);
-      } else if (id == 0) {
-        model.addAttribute("todos", todos);
-      } else {
-        model.addAttribute("todos", service.searchByUserID(id));
-      }
-    }
+    service.generateIndexLayout(model, isActive, searchKey,id);
     return "list-todo";
   }
 

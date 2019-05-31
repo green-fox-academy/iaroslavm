@@ -22,6 +22,14 @@ public interface TodoService {
 
   List<Todo> searchByUserID(Long id);
 
+  boolean isActiveNotNull(String isActive);
+
+  boolean isKeywordNotNull(String keyWord);
+
+  boolean isIdNotNull(Long id);
+
+  void generateIndexLayout(Model model, String isActive, String keyWord, Long id);
+
 //  void active(String isActive, Model model);
 
 }

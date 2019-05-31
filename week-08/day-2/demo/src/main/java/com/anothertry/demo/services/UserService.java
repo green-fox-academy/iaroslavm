@@ -2,6 +2,7 @@ package com.anothertry.demo.services;
 
 import com.anothertry.demo.model.User;
 import com.anothertry.demo.model.Todo;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -16,5 +17,7 @@ public interface UserService {
   void addTask(Todo todo);
 
   void deleteByID(long id);
+
+  void addUserList(Model model);
 
 }
