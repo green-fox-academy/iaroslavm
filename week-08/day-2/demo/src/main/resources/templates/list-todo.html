@@ -10,8 +10,20 @@
 <body>
 <form th:action="@{/todo/search}" th:method="post">
     <input type="text" placeholder="search" name="searchKey">
-    <input type="submit" value="submit">
+    <input type="submit" value="search with a keyword">
 </form>
+
+
+<form th:action="@{/todo/searchByUserName}" th:method="post">
+<select th:name="id">
+    <option th:each="name : ${userList}" th:value="${name.id}" th:text="${name.name}"></option>
+    <option th:value="0" th:text="All"></option>
+    <input type="submit" value="search by name">
+</select>
+</form>
+
+
+
 <h1>Todos for today</h1>
 <table>
     <thead>
@@ -20,6 +32,8 @@
         <th>TASK</th>
         <th>DONE</th>
         <th>URGENT</th>
+        <th>USER</th>
+        <th>Start Date</th>
         <th>DELETE</th>
         <th>EDIT</th>
     </tr>
@@ -30,30 +44,14 @@
         <td><a th:href="@{'/todo/item/' + ${each.id}}"> <span th:text="${each.title}"></span></a></td>
         <td th:text="${each.done}"></td>
         <td th:text="${each.urgent}"></td>
-        <td><a th:href="'/todo/' + ${each.id} + '/delete'"> delete</a></td>
-        <td><a th:href="'/todo/' + ${each.id} + '/edit'"> edit</a></td>
+        <td th:text="${each.user == null} ? 'none' : ${each.user.name}"></td>
+        <td th:text="${each.createdAtDate}"></td>
+        <td><a th:href="'/todo/delete/' + ${each.id}"> delete</a></td>
+        <td><a th:href="'/todo/edit/' + ${each.id}"> edit</a></td>
     </tr>
     </tbody>
 </table>
-<h3><a href="/todo/add">Add new task</a></h3>
-
-<!--<h1>Assignees</h1>-->
-<!--<table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th>ID</th>-->
-<!--        <th>Name</th>-->
-<!--        <th>EMAIL</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="each : ${assigneelist}">-->
-<!--        <td th:text="${each.id}"></td>-->
-<!--        <td th:text="${each.name}"></td>-->
-<!--        <td th:text="${each.email}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
-<h3><a href="/todo/aslist">Asignee list</a></h3>
+<h3><a href="/todo/addTask">Add new task</a></h3>
+<h3><a href="/todo/userList">User list</a></h3>
 </body>
 </html>

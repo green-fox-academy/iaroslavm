@@ -18,6 +18,10 @@
     <p>Urgent?</p>
     <p><input type="checkbox" th:field="*{urgent}"> Yes</p>
 
+    <select th:field="*{user}">
+        <option th:each="as : ${assigneelist}"  th:value="${as.id}" th:text="${as.name}"></option>
+    </select>
+    <br>
     <input type="hidden" th:field="*{id}" th:value="${todoEdit.id}">
     <input type="submit" value="submit"/>
     <!--    <button>Submit</button>-->

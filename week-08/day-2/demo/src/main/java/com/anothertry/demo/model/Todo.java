@@ -3,9 +3,11 @@ package com.anothertry.demo.model;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Todo {
+
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,6 +18,11 @@ public class Todo {
   private boolean isDone;
   @ColumnDefault(value = "false")
   private boolean isUrgent;
+  @ManyToOne
+  private User user;
+  @Temporal(value=TemporalType.DATE)
+  private Date createdAtDate = new Date();
+
 
   public Todo(){ }
 
@@ -69,5 +76,21 @@ public class Todo {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public Date getCreatedAtDate() {
+    return createdAtDate;
+  }
+
+  public void setCreatedAtDate(Date createdAtDate) {
+    this.createdAtDate = createdAtDate;
   }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ServiceImp implements IService {
+public class TodoServiceImp implements TodoService {
 
   @Autowired
   ITodoRepository repository;
@@ -40,9 +40,19 @@ public class ServiceImp implements IService {
   @Override
   public void search(String title, Model model) {
     if (title != null) {
-      model.addAttribute("todos", findAll().stream().filter(todo -> todo.getTitle().toLowerCase().contains(title.toLowerCase()) ||
-          todo.getDescription().toLowerCase().contains(title.toLowerCase())).collect(Collectors.toList()));
+      model.addAttribute("todos",
+
+          findAll()
+              .stream().
+              filter(todo -> todo.getTitle()
+                  .toLowerCase().contains(title.toLowerCase()) ||
+                  todo.getDescription().toLowerCase().contains(title.toLowerCase()))
+              .collect(Collectors.toList()));
     }
   }
 
+  @Override
+  public List<Todo> searchByUserID(Long id) {
+    return repository.findAllByUser_Id(id);
+  }
 }

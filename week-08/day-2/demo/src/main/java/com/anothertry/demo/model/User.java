@@ -1,19 +1,21 @@
 package com.anothertry.demo.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Asignee {
+public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   private String name;
   private String email;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+  private List<Todo> tasks = new ArrayList<>();
+
 
   public long getId() {
     return id;
@@ -37,5 +39,13 @@ public class Asignee {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public List<Todo> getTasks() {
+    return tasks;
+  }
+
+  public void setTasks(List<Todo> tasks) {
+    this.tasks = tasks;
   }
 }

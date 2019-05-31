@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 
-public interface IService {
+public interface TodoService {
 
 
   List<Todo> findAll();
@@ -18,10 +18,9 @@ public interface IService {
 
   Todo findById(long id);
 
-
-
-
   void search(String title, Model model);
+
+  List<Todo> searchByUserID(Long id);
 
 //  void active(String isActive, Model model);
 

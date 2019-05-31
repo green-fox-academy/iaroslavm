@@ -20,16 +20,16 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="each : ${aslist}">
+    <tr th:each="each : ${userList}">
         <td th:text="${each.id}"></td>
-        <td th:text="${each.name}"></td>
+        <td><a th:href="@{'/todo/user/' + ${each.id}}"> <span th:text="${each.name}"></span></a></td>
         <td th:text="${each.email}"></td>
-        <td><a th:href="'/todo/' + ${each.id} + '/editas'"> edit name</a></td>
-        <td><a th:href="'/todo/' + ${each.id} + '/delete'"> delete</a></td>
+        <td><a th:href="'/todo/editUser/' + ${each.id}"> edit name</a></td>
+        <td><a th:href="'/todo/deleteUser/' + ${each.id}"> delete</a></td>
     </tr>
     </tbody>
 </table>
-<h3><a href="/todo/addas">Add new Asignee</a></h3>
-<h3><a href="/todo/list">Back to list</a></h3>
+<h3><a href="/todo/addUser">Add new user</a></h3>
+<h3><a href="/todo/list">Back to TODO's list</a></h3>
 </body>
 </html>

@@ -1,9 +1,9 @@
 package com.anothertry.demo.controller;
 
-import com.anothertry.demo.model.Asignee;
+import com.anothertry.demo.model.User;
 import com.anothertry.demo.model.Todo;
-import com.anothertry.demo.services.AsService;
-import com.anothertry.demo.services.IService;
+import com.anothertry.demo.services.UserService;
+import com.anothertry.demo.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,18 +19,19 @@ import java.util.stream.Collectors;
 public class TodoController {
 
   @Autowired
-  IService service;
+  TodoService service;
 
   @Autowired
-  AsService asService;
+  UserService userService;
 
   @RequestMapping(value = {"/list", "/"}, method = RequestMethod.GET)
   public String list(Model model, @RequestParam(name = "isActive", required = false) String isActive,
-                     @RequestParam(name = "searchKey", required = false) String searchKey) {
+                     @RequestParam(name = "searchKey", required = false) String searchKey,
+                     @RequestParam(name = "id", required = false) Long id) {
     List<Todo> todos = new ArrayList<>();
     service.findAll().forEach(todos::add);
 
-    model.addAttribute("assigneelist",asService.findAll());
+    model.addAttribute("userList", userService.findAll());
 
 
     if (isActive != null) {
@@ -40,41 +41,28 @@ public class TodoController {
         model.addAttribute("todos", todos.stream().filter(Todo::isDone).collect(Collectors.toList()));
       }
     } else {
-      if(searchKey == null) {
+      if(searchKey == null & id == null) {
+        model.addAttribute("todos", todos);
+      } else if (searchKey != null){
+       service.search(searchKey, model);
+      } else if (id == 0) {
         model.addAttribute("todos", todos);
       } else {
-       service.search(searchKey, model);
+        model.addAttribute("todos", service.searchByUserID(id));
       }
     }
-    return "list";
-  }
-
-  @GetMapping("/aslist")
-  public String aslist(Model model) {
-    model.addAttribute("aslist", asService.findAll());
-    return "list-as";
-  }
-
-  @GetMapping("/addas")
-  public String addAs(Model model) {
-    model.addAttribute("newAs", new Asignee());
-    return "add-as";
+    return "list-todo";
   }
 
 
-  @PostMapping("/addas")
-  public String postAs(@ModelAttribute Asignee newAsignee) {
-    asService.addAsignee(newAsignee);
-    return "redirect:/todo/aslist";
-  }
 
-  @GetMapping("/add")
+  @GetMapping("/addTask")
   public String addTask(Model model) {
     model.addAttribute("newTodo", new Todo());
     return "add-todo";
   }
 
-  @PostMapping("/add")
+  @PostMapping("/addTask")
   public String postTask(@ModelAttribute Todo newTodo) {
     service.save(newTodo);
     return "redirect:/todo/";
@@ -82,15 +70,17 @@ public class TodoController {
 
 
 
-  @GetMapping("/{id}/delete")
+  @GetMapping("/delete/{id}")
   public String deleteTask(@PathVariable Long id) {
     service.deleteById(id);
     return "redirect:/todo/";
   }
 
-  @GetMapping("/{id}//edit")
+
+  @GetMapping("/edit/{id}")
   public String editTask(Model model, @PathVariable Long id) {
     model.addAttribute("todoEdit", service.findById(id));
+    model.addAttribute("assigneelist", userService.findAll());
     return "edit-todo";
   }
 
@@ -98,30 +88,24 @@ public class TodoController {
   @PostMapping("/edit")
   public String editTask(@ModelAttribute Todo thisTodo) {
     service.save(thisTodo);
+//    userService.addTask(thisTodo);
     return "redirect:/todo/";
-  }
-
-  @GetMapping("/{id}/editas")
-  public String editAs(Model model, @PathVariable Long id) {
-    model.addAttribute("asEdit", asService.findById(id));
-    return "edit-as";
-  }
-
-  @PostMapping("/editas")
-  public String editAs(@ModelAttribute Asignee thisAs) {
-    asService.addAsignee(thisAs);
-    return "redirect:/todo/aslist";
   }
 
   @GetMapping("/item/{id}")
   public String getDescription(@PathVariable Long id, Model model){
     model.addAttribute("todoObject", service.findById(id));
-    return "item-description";
+    return "description-todo";
   }
 
   @PostMapping("/search")
   public String search(String searchKey){
     return "redirect:/todo/list?searchKey=" + searchKey;
+  }
+
+  @PostMapping("/searchByUserName")
+  public String searchByUser(Long id){
+    return "redirect:/todo/list/?id=" + id;
   }
 
 
