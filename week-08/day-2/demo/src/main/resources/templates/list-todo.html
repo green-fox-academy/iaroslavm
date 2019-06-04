@@ -18,9 +18,14 @@
 <select th:name="id">
     <option th:each="name : ${userList}" th:value="${name.id}" th:text="${name.name}"></option>
     <option th:value="0" th:text="All"></option>
-    <input type="submit" value="search by name">
+    <input type="submit" value="search by user name">
 </select>
 </form>
+
+<!--<form action="/todo/list" >-->
+<!--    <label></label>-->
+<!--    <input th:type="checkbox" name="isActive" checked="true">-->
+<!--</form>-->
 
 
 

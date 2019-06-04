@@ -74,12 +74,12 @@ public class TodoServiceImp implements TodoService {
   @Override
   public void generateIndexLayout(Model model, String isActive, String keyWord, Long id) {
     if (isActiveNotNull(isActive)) model.addAttribute("todos", findAll()
-        .stream()
-        .filter(todo -> !todo.isDone()));
+        .stream().filter(todo -> !todo.isDone()).collect(Collectors.toList()));
 
     if (isKeywordNotNull(keyWord)) model.addAttribute("todos", findAll()
         .stream()
-        .filter(todo -> todo.getDescription().toLowerCase().contains(keyWord) || todo.getTitle().toLowerCase().contains(keyWord)));
+        .filter(todo -> todo.getDescription().toLowerCase().contains(keyWord) || todo.getTitle().toLowerCase().contains(keyWord))
+        .collect(Collectors.toList()));
 
     if (isIdNotNull(id))  {
       if(id != 0) model.addAttribute("todos", searchByUserID(id));
@@ -91,4 +91,10 @@ public class TodoServiceImp implements TodoService {
 
     }
   }
+
+
+//  @Override
+//  public List<Todo> findAllByDone(int i) {
+//    return repository.findAllByDoneIs(i);
+//  }
 }

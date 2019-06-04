@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{'/listCompany?search=oil'}" th:method="post">
+    <input type="submit" value="oil companies">
+</form>
+
+<form th:action="@{/listCompany}" th:method="post">
+    <input type="text" placeholder="Key Word" name="keyWord">
+    <input type="submit" value="search">
+</form>
+<ul>
+<li th:each="each : ${companies}" th:text="${each.name}"></li>
+</ul>
+
+</body>
+</html>

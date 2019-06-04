@@ -25,12 +25,11 @@ public class TodoController {
   UserService userService;
 
   @RequestMapping(value = {"/list", "/"}, method = RequestMethod.GET)
-  public String list(Model model, @RequestParam(name = "isActive", required = false) String isActive,
-                     @RequestParam(name = "searchKey", required = false) String searchKey,
-                     @RequestParam(name = "id", required = false) Long id) {
+  public String list(Model model, String isActive, String searchKey, Long id) {
     userService.addUserList(model);
+    service.generateIndexLayout(model,isActive, searchKey,id);
 
-    service.generateIndexLayout(model, isActive, searchKey,id);
+
     return "list-todo";
   }
 
@@ -60,7 +59,7 @@ public class TodoController {
   @GetMapping("/edit/{id}")
   public String editTask(Model model, @PathVariable Long id) {
     model.addAttribute("todoEdit", service.findById(id));
-    model.addAttribute("assigneelist", userService.findAll());
+    model.addAttribute("userList", userService.findAll());
     return "edit-todo";
   }
 
