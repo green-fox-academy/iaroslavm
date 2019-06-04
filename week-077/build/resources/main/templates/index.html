@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a href="#">Information</a></li>
+</ul>
+
+<img src="/greenfox.png">
+<p>This is <span th:text="${foxObject.name == null} ? 'Mr. Fox' : ${foxObject.name.toUpperCase()}"></span>
+    . He leaves on <span th:text="${foxObject.food == null} ? 'pizza ' : ${foxObject.food.toUpperCase()}"></span>
+    and <span th:text="${foxObject.drink == null} ? ' lemonade' : ${foxObject.drink.toUpperCase()}"></span>
+    and currently knows <span th:text="${foxObject.triks.isEmpty()} ? 'nothing.' : ${foxObject.triks.size()}> ' tricks.'"></span>
+</p>
+
+<h2>Knows following tricks:</h2>
+<ul>
+    <li>Write HTML</li>
+    <li>Code in Java</li>
+</ul>
+</body>
+</html>

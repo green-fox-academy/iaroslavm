@@ -22,10 +22,10 @@ public class ToDo {
     this.title = title;
   }
 
-  public ToDo(String title, boolean urgent, boolean done){
+  public ToDo(String title, boolean done, boolean urgent){
     this.title = title;
-    this.isDone = urgent;
-    this.isUrgent = done;
+    this.isDone = done;
+    this.isUrgent = urgent;
   }
 
   public ToDo(){
@@ -52,7 +52,7 @@ public class ToDo {
   }
 
   public void setUrgent(boolean urgent) {
-    this.isUrgent = urgent;
+    isUrgent = urgent;
   }
 
   public boolean isDone() {
@@ -60,7 +60,7 @@ public class ToDo {
   }
 
   public void setDone(boolean done) {
-    this.isDone = done;
+    isDone = done;
   }
 }
 

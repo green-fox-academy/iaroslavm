@@ -1,0 +1,39 @@
+body
+{
+    margin:0px;
+    margin-top:20Px;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: antiquewhite;
+}
+
+header
+{
+    font-style: oblique;
+    color: cornflowerblue;
+    font-size: 50px;
+    margin-bottom: 5px;
+}
+
+.navbarline 
+{
+    background-color: cornflowerblue;
+    width: 96%;
+    height: 5px;
+    margin-bottom: 5px;
+}
+
+
+.navbar input 
+{
+    margin-right: 45px;
+    background-color: lightcoral;
+    float: left;
+    width: 185px;
+    height: 25px;
+    color: azure;
+    font-style: oblique;
+    font-size: 15px;
+    border: hidden;
+    border-radius: 4px;
+}

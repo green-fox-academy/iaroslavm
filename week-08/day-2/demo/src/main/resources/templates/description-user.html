@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel = "stylesheet"
+          type = "text/css"
+          th:href = "@{/style.css}" />
+</head>
+<body>
+<h1> This is information for the assignee: <span th:text="${asObject.name}"></span></h1>
+<p>Email: <span th:text="${asObject.email}"></span></p>
+<h2>List of todos:</h2>
+<ul>
+    <li th:each="todo : ${asObject.getTasks()}" th:text="${todo.title}"></li>
+</ul>
+<h3><a href="/todo/list">Back to list</a></h3>
+</body>
+</html>

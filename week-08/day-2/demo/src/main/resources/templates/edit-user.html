@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel = "stylesheet"
+          type = "text/css"
+          th:href = "@{/style.css}" />
+</head>
+<body>
+<h1>Edit user name : <span th:text="${asEdit.name}"></span></h1>
+<form th:action="@{/todo/editUser}" th:object="${asEdit}" th:method="post">
+
+    <p>New name: <input type="text" th:field="*{name}"></p>
+    <p>New email: <input type="text" th:field="*{email}"></p>
+
+    <input type="hidden" th:field="*{id}" th:value="${asEdit.id}">
+    <input type="submit" value="submit"/>
+    <!--    <button>Submit</button>-->
+</form>
+<h3><a href="/todo/userList">Back to list</a></h3>
+
+</body>
+</html>
