@@ -30,6 +30,8 @@ public interface TodoService {
 
   void generateIndexLayout(Model model, String isActive, String keyWord, Long id);
 
+//  List<Todo> findAllByDone(int i);
+
 //  void active(String isActive, Model model);
 
 }

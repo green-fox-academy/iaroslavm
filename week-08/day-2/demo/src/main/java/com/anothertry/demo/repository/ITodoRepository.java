@@ -20,5 +20,7 @@ public interface ITodoRepository extends CrudRepository<Todo,Long> {
 
   List<Todo> findAllByUser_Id(Long id);
 
+//  List<Todo> findAllByDoneIs(int i);
+
 
 }

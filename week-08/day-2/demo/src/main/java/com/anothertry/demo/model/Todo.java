@@ -10,7 +10,7 @@ public class Todo {
 
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String title;
   private String description;
@@ -19,6 +19,7 @@ public class Todo {
   @ColumnDefault(value = "false")
   private boolean isUrgent;
   @ManyToOne
+//  @JoinColumn(name="cart_id", nullable=false)
   private User user;
   @Temporal(value=TemporalType.DATE)
   private Date createdAtDate = new Date();
