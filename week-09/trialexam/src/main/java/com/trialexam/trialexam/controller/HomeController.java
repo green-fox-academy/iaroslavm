@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -53,8 +54,22 @@ public class HomeController {
     }
   }
 
-//  @GetMapping("/a/{alias}")
-//  public String getURL(@PathVariable String alias){
-//
-//  }
+  @GetMapping("/a/{alias}")
+  public String getURL(@PathVariable String alias) {
+    if (urlService.checkIfAliasNameExists(alias)) {
+      UrlClass urlObject = urlService.findByAlias(alias);
+      String urlString = urlObject.getUrl();
+      urlObject.incrementHitCount();
+      urlService.save(urlObject);
+      return "redirect:" + urlString;
+    } else return "redirect:/a";
+  }
+
+
+  @GetMapping("/test")
+  public String getURLTest(){
+    return "redirect:https://football.ua/";
+  }
+
 }
+

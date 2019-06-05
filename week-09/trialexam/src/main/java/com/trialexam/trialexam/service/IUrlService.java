@@ -17,4 +17,6 @@ public interface IUrlService {
   UrlClass findAllById(Long id);
 
   UrlClass findByIdOrGenerateEmpty(Long id);
+
+  UrlClass findByAlias(String alias);
 }

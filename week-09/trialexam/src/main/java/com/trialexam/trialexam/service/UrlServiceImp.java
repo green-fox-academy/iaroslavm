@@ -55,5 +55,10 @@ public class UrlServiceImp implements IUrlService {
     else return findAllById(id);
   }
 
+  @Override
+  public UrlClass findByAlias(String alias) {
+    return repository.findByAlias(alias);
+  }
+
 
 }
