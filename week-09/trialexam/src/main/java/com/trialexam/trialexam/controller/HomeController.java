@@ -2,6 +2,9 @@ package com.trialexam.trialexam.controller;
 
 import com.trialexam.trialexam.model.UrlClass;
 import com.trialexam.trialexam.service.IUrlService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,14 +58,16 @@ public class HomeController {
   }
 
   @GetMapping("/a/{alias}")
-  public String getURL(@PathVariable String alias) {
+  public ResponseEntity getURL(@PathVariable String alias) {
     if (urlService.checkIfAliasNameExists(alias)) {
       UrlClass urlObject = urlService.findByAlias(alias);
       String urlString = urlObject.getUrl();
       urlObject.incrementHitCount();
       urlService.save(urlObject);
-      return "redirect:" + urlString;
-    } else return "redirect:/a";
+      HttpHeaders headers = new HttpHeaders();
+      headers.add("Location", urlString);
+      return new ResponseEntity<String>(headers, HttpStatus.FOUND);
+    } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
 

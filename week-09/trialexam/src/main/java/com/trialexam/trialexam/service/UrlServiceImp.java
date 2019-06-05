@@ -1,6 +1,7 @@
 package com.trialexam.trialexam.service;
 
 import com.trialexam.trialexam.model.UrlClass;
+import com.trialexam.trialexam.model.UrlClassDTO;
 import com.trialexam.trialexam.repository.UrlRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +32,7 @@ public class UrlServiceImp implements IUrlService {
     List<String> listAliases = findAll()
         .stream()
         .map(UrlClass::getAlias).collect(Collectors.toList());
-    if(listAliases.contains(urlObject.getAlias())) return true;
-    else return false;
+   return listAliases.contains(urlObject.getAlias());
   }
 
   @Override
@@ -40,8 +40,16 @@ public class UrlServiceImp implements IUrlService {
     List<String> listAliases = findAll()
         .stream()
         .map(UrlClass::getAlias).collect(Collectors.toList());
-    if(listAliases.contains(name)) return true;
-    else return false;
+    return listAliases.contains(name);
+  }
+
+  @Override
+  public boolean checkIfIdExists(Long id) {
+    List<Long> listID = findAll()
+        .stream()
+        .map(UrlClass::getId)
+        .collect(Collectors.toList());
+    return listID.contains(id);
   }
 
   @Override
@@ -60,5 +68,24 @@ public class UrlServiceImp implements IUrlService {
     return repository.findByAlias(alias);
   }
 
+  @Override
+  public List<UrlClassDTO> returnAllUrlClassDto(){
+    return findAll()
+        .stream()
+        .map(object -> new UrlClassDTO(object.getId(), object.getUrl(), object.getAlias(), object.getHitCount()))
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public void deleteUrlClassbySecretCode(String secretCode) {
+    repository.deleteBySecretCode(secretCode);
+  }
+
+  @Override
+  public boolean checkIfIdMatchesSecretCode(Long id, String secretCode) {
+    UrlClass urlObject = findAllById(id);
+    return urlObject.getSecretCode().equals(secretCode);
+  }
 
 }
+
