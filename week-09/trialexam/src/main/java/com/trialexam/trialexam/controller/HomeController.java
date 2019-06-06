@@ -29,8 +29,8 @@ public class HomeController {
     if(urlName == null & newUrlID == null){
       return "index";
     } else if (newUrlID != null){
-      model.addAttribute("aliasName", urlService.findAllById(Long.parseLong(newUrlID)).getAlias());
-      model.addAttribute("codeName", urlService.findAllById(Long.parseLong(newUrlID)).getSecretCode());
+      model.addAttribute("aliasName", urlService.findAllById(newUrlID).getAlias());
+      model.addAttribute("codeName", urlService.findAllById(newUrlID).getSecretCode());
       return "index";
     } else {
       model.addAttribute("existingUrlName",urlName);

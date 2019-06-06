@@ -15,5 +15,5 @@ public interface UrlRepository extends CrudRepository<UrlClass, Long> {
 
   UrlClass findByAlias(String alias);
 
-  void deleteBySecretCode(String secretCode);
+  UrlClass findBySecretCode(String secretCode);
 }

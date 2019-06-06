@@ -27,13 +27,6 @@ public class UrlServiceImp implements IUrlService {
     return repository.findAll();
   }
 
-  @Override
-  public boolean checkIfAliasExists(UrlClass urlObject) {
-    List<String> listAliases = findAll()
-        .stream()
-        .map(UrlClass::getAlias).collect(Collectors.toList());
-   return listAliases.contains(urlObject.getAlias());
-  }
 
   @Override
   public boolean checkIfAliasNameExists(String name) {
@@ -44,24 +37,19 @@ public class UrlServiceImp implements IUrlService {
   }
 
   @Override
-  public boolean checkIfIdExists(Long id) {
+  public boolean checkIfIdExists(String id) {
     List<Long> listID = findAll()
         .stream()
         .map(UrlClass::getId)
         .collect(Collectors.toList());
-    return listID.contains(id);
+    return listID.contains(Long.parseLong(id));
   }
 
   @Override
-  public UrlClass findAllById(Long id) {
-    return repository.findAllById(id);
+  public UrlClass findAllById(String id) {
+    return repository.findAllById(Long.parseLong(id));
   }
 
-  @Override
-  public UrlClass findByIdOrGenerateEmpty(Long id) {
-    if(id == null) return new UrlClass();
-    else return findAllById(id);
-  }
 
   @Override
   public UrlClass findByAlias(String alias) {
@@ -78,11 +66,12 @@ public class UrlServiceImp implements IUrlService {
 
   @Override
   public void deleteUrlClassbySecretCode(String secretCode) {
-    repository.deleteBySecretCode(secretCode);
+    repository.findBySecretCode(secretCode);
+    repository.delete(repository.findBySecretCode(secretCode));
   }
 
   @Override
-  public boolean checkIfIdMatchesSecretCode(Long id, String secretCode) {
+  public boolean checkIfIdMatchesSecretCode(String id, String secretCode) {
     UrlClass urlObject = findAllById(id);
     return urlObject.getSecretCode().equals(secretCode);
   }

@@ -13,15 +13,13 @@ public interface IUrlService {
 
   List<UrlClass> findAll();
 
-  boolean checkIfAliasExists(UrlClass urlObject);
 
   boolean checkIfAliasNameExists(String name);
 
-  boolean checkIfIdExists(Long id);
+  boolean checkIfIdExists(String id);
 
-  UrlClass findAllById(Long id);
+  UrlClass findAllById(String id);
 
-  UrlClass findByIdOrGenerateEmpty(Long id);
 
   UrlClass findByAlias(String alias);
 
@@ -29,6 +27,7 @@ public interface IUrlService {
 
   void deleteUrlClassbySecretCode(String secretCode);
 
-  boolean checkIfIdMatchesSecretCode(Long id, String secretCode);
+  boolean checkIfIdMatchesSecretCode(String id, String secretCode);
+
 
 }
