@@ -12,4 +12,8 @@ public interface UrlRepository extends CrudRepository<UrlClass, Long> {
   List<UrlClass> findAll();
 
   UrlClass findAllById(Long id);
+
+  UrlClass findByAlias(String alias);
+
+  UrlClass findBySecretCode(String secretCode);
 }

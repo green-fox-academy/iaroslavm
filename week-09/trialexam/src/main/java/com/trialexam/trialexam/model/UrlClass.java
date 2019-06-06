@@ -13,6 +13,15 @@ public class UrlClass {
   private String url;
   private String alias;
   private String secretCode;
+  private int hitCount;
+
+  public int getHitCount() {
+    return hitCount;
+  }
+
+  public void setHitCount(int hitCount) {
+    this.hitCount = hitCount;
+  }
 
   public UrlClass(){}
 
@@ -46,5 +55,9 @@ public class UrlClass {
 
   public void setSecretCode(String secretCode) {
     this.secretCode = secretCode;
+  }
+
+  public void incrementHitCount(){
+    this.hitCount++;
   }
 }

@@ -2,6 +2,9 @@ package com.trialexam.trialexam.controller;
 
 import com.trialexam.trialexam.model.UrlClass;
 import com.trialexam.trialexam.service.IUrlService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -25,8 +29,8 @@ public class HomeController {
     if(urlName == null & newUrlID == null){
       return "index";
     } else if (newUrlID != null){
-      model.addAttribute("aliasName", urlService.findAllById(Long.parseLong(newUrlID)).getAlias());
-      model.addAttribute("codeName", urlService.findAllById(Long.parseLong(newUrlID)).getSecretCode());
+      model.addAttribute("aliasName", urlService.findAllById(newUrlID).getAlias());
+      model.addAttribute("codeName", urlService.findAllById(newUrlID).getSecretCode());
       return "index";
     } else {
       model.addAttribute("existingUrlName",urlName);
@@ -53,8 +57,24 @@ public class HomeController {
     }
   }
 
-//  @GetMapping("/a/{alias}")
-//  public String getURL(@PathVariable String alias){
-//
-//  }
+  @GetMapping("/a/{alias}")
+  public ResponseEntity getURL(@PathVariable String alias) {
+    if (urlService.checkIfAliasNameExists(alias)) {
+      UrlClass urlObject = urlService.findByAlias(alias);
+      String urlString = urlObject.getUrl();
+      urlObject.incrementHitCount();
+      urlService.save(urlObject);
+      HttpHeaders headers = new HttpHeaders();
+      headers.add("Location", urlString);
+      return new ResponseEntity<String>(headers, HttpStatus.FOUND);
+    } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+
+  @GetMapping("/test")
+  public String getURLTest(){
+    return "redirect:https://football.ua/";
+  }
+
 }
+

@@ -1,8 +1,11 @@
 package com.trialexam.trialexam.service;
 
-import com.trialexam.trialexam.model.UrlClass;
+    import com.trialexam.trialexam.model.UrlClass;
+    import com.trialexam.trialexam.model.UrlClassDTO;
+    import com.trialexam.trialexam.repository.UrlRepository;
 
-import java.util.List;
+    import java.util.List;
+    import java.util.stream.Collectors;
 
 public interface IUrlService {
 
@@ -10,11 +13,21 @@ public interface IUrlService {
 
   List<UrlClass> findAll();
 
-  boolean checkIfAliasExists(UrlClass urlObject);
 
   boolean checkIfAliasNameExists(String name);
 
-  UrlClass findAllById(Long id);
+  boolean checkIfIdExists(String id);
 
-  UrlClass findByIdOrGenerateEmpty(Long id);
+  UrlClass findAllById(String id);
+
+
+  UrlClass findByAlias(String alias);
+
+  List<UrlClassDTO> returnAllUrlClassDto();
+
+  void deleteUrlClassbySecretCode(String secretCode);
+
+  boolean checkIfIdMatchesSecretCode(String id, String secretCode);
+
+
 }

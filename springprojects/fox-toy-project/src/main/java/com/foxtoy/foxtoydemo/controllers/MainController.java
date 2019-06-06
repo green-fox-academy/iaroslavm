@@ -54,8 +54,7 @@ public class MainController {
   }
 
   @PostMapping("/register")
-  public String postRegister(@RequestParam(name="login",required = false) String login,
-                                @RequestParam(name="register", required = false) String register) {
+  public String postRegister(@RequestParam(name="register", required = false) String register) {
     if (register == null) {
       return "redirect:/register";
     } else {

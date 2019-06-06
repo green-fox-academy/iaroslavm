@@ -1,6 +1,7 @@
 package com.trialexam.trialexam.service;
 
 import com.trialexam.trialexam.model.UrlClass;
+import com.trialexam.trialexam.model.UrlClassDTO;
 import com.trialexam.trialexam.repository.UrlRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,34 +27,54 @@ public class UrlServiceImp implements IUrlService {
     return repository.findAll();
   }
 
-  @Override
-  public boolean checkIfAliasExists(UrlClass urlObject) {
-    List<String> listAliases = findAll()
-        .stream()
-        .map(UrlClass::getAlias).collect(Collectors.toList());
-    if(listAliases.contains(urlObject.getAlias())) return true;
-    else return false;
-  }
 
   @Override
   public boolean checkIfAliasNameExists(String name) {
     List<String> listAliases = findAll()
         .stream()
         .map(UrlClass::getAlias).collect(Collectors.toList());
-    if(listAliases.contains(name)) return true;
-    else return false;
+    return listAliases.contains(name);
   }
 
   @Override
-  public UrlClass findAllById(Long id) {
-    return repository.findAllById(id);
+  public boolean checkIfIdExists(String id) {
+    List<Long> listID = findAll()
+        .stream()
+        .map(UrlClass::getId)
+        .collect(Collectors.toList());
+    return listID.contains(Long.parseLong(id));
   }
 
   @Override
-  public UrlClass findByIdOrGenerateEmpty(Long id) {
-    if(id == null) return new UrlClass();
-    else return findAllById(id);
+  public UrlClass findAllById(String id) {
+    return repository.findAllById(Long.parseLong(id));
   }
 
+
+  @Override
+  public UrlClass findByAlias(String alias) {
+    return repository.findByAlias(alias);
+  }
+
+  @Override
+  public List<UrlClassDTO> returnAllUrlClassDto(){
+    return findAll()
+        .stream()
+        .map(object -> new UrlClassDTO(object.getId(), object.getUrl(), object.getAlias(), object.getHitCount()))
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public void deleteUrlClassbySecretCode(String secretCode) {
+    repository.findBySecretCode(secretCode);
+    repository.delete(repository.findBySecretCode(secretCode));
+  }
+
+  @Override
+  public boolean checkIfIdMatchesSecretCode(String id, String secretCode) {
+    UrlClass urlObject = findAllById(id);
+    return urlObject.getSecretCode().equals(secretCode);
+  }
 
 }
+
